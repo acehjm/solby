@@ -1,9 +1,9 @@
 package junaiu
 
 import junaiu.router.Users
+import org.jetbrains.exposed.sql.Database
 import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.application.install
-import org.jetbrains.ktor.application.log
 import org.jetbrains.ktor.features.CallLogging
 import org.jetbrains.ktor.features.Compression
 import org.jetbrains.ktor.features.DefaultHeaders
@@ -20,34 +20,16 @@ import org.jetbrains.ktor.routing.Routing
 fun Application.sApp() {
     //        connectToDB()
 
-//        Database.connect(
-//                url = db.prop("url"),
-//                driver = db.prop("driver"),
-//                user = db.prop("user"),
-//                password = db.prop("password")
-//        )
+        Database.connect(
+                url = "jdbc:mysql://127.0.0.1:3306/solby?characterEncoding=utf8&useSSL=true",
+                driver = "com.mysql.cj.jdbc.Driver",
+                user = "root",
+                password = "root"
+        )
 
     install(DefaultHeaders)
     install(CallLogging)
     install(Compression)
-
-    /*val mapConfig = MapApplicationConfig()
-    mapConfig.put("aa", "ddd")
-
-    val ii = mapConfig.property("aa").getString()
-    println("ii: $ii")
-
-    val dd = mapConfig.property("database").getString()
-    println("dd: $dd")*/
-
-    log.info("config...")
-    val youkubeConfig = environment.config.config("database")
-    val key: String = youkubeConfig.property("driver").getString()
-    println("$key")
-
-    val db = environment.config.property("database.url").getString()
-//    println("url: ${db.property("url").getString()}")
-    log.info("config.. $db")
 
     install(Routing) {
         Users()

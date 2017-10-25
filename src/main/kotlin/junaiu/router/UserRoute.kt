@@ -15,7 +15,7 @@ import org.jetbrains.ktor.routing.get
  */
 fun Route.Users() {
     get("/") {
-        call.respondText("""<div style="font-size:36px;color:blue;">Hello, Ktor!</div>""", ContentType.Text.Html)
+        call.respondText("""<div style="font-size:360px;color:blue;">Hello, Ktor!</div>""", ContentType.Text.Html)
     }
     get("/user") {
         call.respond(vv(1))
