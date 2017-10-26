@@ -1,20 +1,18 @@
-package junaiu
+package nauuu
 
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.ktor.application.Application
 import org.jetbrains.ktor.config.ApplicationConfig
 import org.jetbrains.ktor.host.applicationHostEnvironment
 
 /**
  * Description
  *
- * @author dyoon
+ * @author nauuu
  * @date 2017-10-17
  */
 
 fun connectToDB() = applicationHostEnvironment {
+
     val db = config.config("database")
-    println(db)
     println("url: ${db.property("url").getString()}")
 //    Database.connect(
 //            url = db.prop("url"),

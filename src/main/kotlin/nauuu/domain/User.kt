@@ -1,4 +1,4 @@
-package junaiu.domain
+package nauuu.domain
 
 import org.jetbrains.exposed.dao.LongIdTable
 import org.jetbrains.exposed.sql.SchemaUtils.create
@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 /**
  * Description
  *
- * @author dyoon
+ * @author nauuu
  * @date 2017/07/03
  */
 

@@ -4,23 +4,26 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>junaiu</groupId>
+    <groupId>nauuu</groupId>
     <artifactId>solby</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>solby</name>
 
     <properties>
-        <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
+        <!--<kotlin.compiler.incremental>true</kotlin.compiler.incremental>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.version>1.1.51</kotlin.version>
         <ktor.version>0.4.0</ktor.version>
     </properties>
 
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-stdlib</artifactId>
@@ -32,12 +35,12 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.12</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.jetbrains.ktor</groupId>
@@ -67,16 +70,16 @@
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-        <!--<resources>
+        <resources>
             <resource>
                 <directory>resources</directory>
             </resource>
-        </resources>-->
-        <!--<testResources>
+        </resources>
+        <testResources>
             <testResource>
                 <directory>test-resources</directory>
             </testResource>
-        </testResources>-->
+        </testResources>
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -99,6 +102,10 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                    <args>
+                        <arg>-Xcoroutines=enable</arg>
+                    </args>
                     <experimentalCoroutines>enable</experimentalCoroutines>
                 </configuration>
             </plugin>
@@ -107,24 +114,20 @@
 
     <repositories>
         <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-kotlin-exposed</id>
-            <name>bintray</name>
+            <id>exposed</id>
             <url>https://dl.bintray.com/kotlin/exposed</url>
         </repository>
         <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>bintray-kotlin-ktor</id>
-            <name>bintray</name>
-            <url>https://dl.bintray.com/kotlin/ktor</url>
+            <id>ktor</id>
+            <url>http://dl.bintray.com/kotlin/ktor</url>
+        </repository>
+        <repository>
+            <id>jcenter</id>
+            <url>http://jcenter.bintray.com</url>
         </repository>
     </repositories>
 
-    <profiles>
+ <!--   <profiles>
         <profile>
             <id>exec-netty</id>
 
@@ -141,6 +144,6 @@
                 </plugins>
             </build>
         </profile>
-    </profiles>
+    </profiles>-->
 
 </project>
