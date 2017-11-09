@@ -1,11 +1,13 @@
 package nauuu.router
 
+import io.ktor.application.call
+import io.ktor.http.ContentType
+import io.ktor.response.respond
+import io.ktor.response.respondText
+import io.ktor.routing.Routing
+import io.ktor.routing.get
+import nauuu.domain.ss
 import nauuu.domain.vv
-import org.jetbrains.ktor.http.ContentType
-import org.jetbrains.ktor.response.respond
-import org.jetbrains.ktor.response.respondText
-import org.jetbrains.ktor.routing.Routing
-import org.jetbrains.ktor.routing.get
 
 /**
  * Description
@@ -18,9 +20,14 @@ fun Routing.Users() {
         call.respondText("""<div style="font-size:360px;color:blue;">Hello, Ktor!</div>""", ContentType.Text.Html)
     }
     get("/user") {
-        call.respond(vv(1))
+        val user = vv(1)
+        call.respond(user?.name ?: "fail")
     }
     get("/user/ooo") {
         call.respond("ooo")
+    }
+    get("/users") {
+        ss()
+        call.respondText("success")
     }
 }

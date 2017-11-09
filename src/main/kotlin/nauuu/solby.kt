@@ -1,13 +1,13 @@
 package nauuu
 
+import io.ktor.application.Application
+import io.ktor.application.install
+import io.ktor.features.CallLogging
+import io.ktor.features.Compression
+import io.ktor.features.DefaultHeaders
+import io.ktor.features.gzip
+import io.ktor.routing.routing
 import nauuu.router.Users
-import org.jetbrains.ktor.application.Application
-import org.jetbrains.ktor.application.install
-import org.jetbrains.ktor.features.CallLogging
-import org.jetbrains.ktor.features.Compression
-import org.jetbrains.ktor.features.DefaultHeaders
-import org.jetbrains.ktor.features.gzip
-import org.jetbrains.ktor.routing.routing
 
 /**
  * Description
@@ -17,23 +17,6 @@ import org.jetbrains.ktor.routing.routing
  */
 /*
 fun Application.module() {
-    //        connectToDB()
-
-    Database.connect(
-            url = "jdbc:mysql://127.0.0.1:3306/solby?characterEncoding=utf8&useSSL=true",
-            driver = "com.mysql.cj.jdbc.Driver",
-            user = "root",
-            password = "root"
-    )
-
-    install(DefaultHeaders)
-
-    install(CallLogging)
-
-    install(Compression) {
-        gzip()
-    }
-
     routing {
         Users()
     }
@@ -44,9 +27,7 @@ fun main(args: Array<String>) {
 }*/
 
 fun Application.main() {
-//    connectToDB()
-    val url = environment.config.config("database").property("url")
-    println("url: ${url.getString()}")
+    connectDB(environment)
 
     install(DefaultHeaders)
     install(CallLogging)
