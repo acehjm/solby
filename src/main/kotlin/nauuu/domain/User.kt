@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
  * @date 2017/07/03
  */
 
-object Users : LongIdTable() {
+object Users2 : LongIdTable() {
     val name = varchar("name", 50)
     val email = varchar("email", 250).uniqueIndex()
     val city = reference("city", Cities)
@@ -25,23 +25,23 @@ object Cities : LongIdTable() {
 }
 
 class User(id: EntityID<Long>) : LongEntity(id) {
-    companion object : LongEntityClass<User>(Users)
+    companion object : LongEntityClass<User>(Users2)
 
-    var name by Users.name
-    var email by Users.email
-    var city by City referencedOn Users.city
+    var name by Users2.name
+    var email by Users2.email
+    var city by City referencedOn Users2.city
 }
 
 class City(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<City>(Cities)
 
     var name by Cities.name
-    val users by User referrersOn Users.city
+    val users by User referrersOn Users2.city
 }
 
 fun ss(): String {
     transaction {
-        create(Cities, Users)
+        create(Cities, Users2)
 
         val stPete = City.new {
             name = "St. Petersburg"
@@ -58,6 +58,6 @@ fun ss(): String {
 
 fun vv(id: Long): User? {
     return transaction {
-        User.find { Users.id greaterEq id }.firstOrNull()
+        User.find { Users2.id greaterEq id }.firstOrNull()
     }
 }
