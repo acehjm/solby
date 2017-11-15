@@ -1,7 +1,6 @@
 package nauuu
 
 import io.ktor.application.ApplicationEnvironment
-import io.ktor.config.ApplicationConfig
 import org.jetbrains.exposed.sql.Database
 
 /**
@@ -19,5 +18,3 @@ fun connectDB(env: ApplicationEnvironment) {
             password = db.property("password").getString()
     )
 }
-
-fun ApplicationConfig.prop(prop: String): String = this.property(prop).getString()

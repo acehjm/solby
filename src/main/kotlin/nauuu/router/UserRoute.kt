@@ -6,8 +6,9 @@ import io.ktor.response.respond
 import io.ktor.response.respondText
 import io.ktor.routing.Routing
 import io.ktor.routing.get
-import nauuu.domain.ss
-import nauuu.domain.vv
+import nauuu.domain.*
+import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.transactions.transaction
 
 /**
  * Description
@@ -15,19 +16,17 @@ import nauuu.domain.vv
  * @author nauuu
  * @date 2017-10-17
  */
-fun Routing.Users() {
+fun Routing.SUsers() {
     get("/") {
         call.respondText("""<div style="font-size:360px;color:blue;">Hello, Ktor!</div>""", ContentType.Text.Html)
     }
     get("/user") {
-        val user = vv(1)
-        call.respond(user?.name ?: "fail")
+        call.respond("fail")
     }
     get("/user/ooo") {
         call.respond("ooo")
     }
     get("/users") {
-        ss()
         call.respondText("success")
     }
 }

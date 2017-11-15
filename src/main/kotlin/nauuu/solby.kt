@@ -1,13 +1,17 @@
 package nauuu
 
 import io.ktor.application.Application
+import io.ktor.application.ApplicationStopped
 import io.ktor.application.install
-import io.ktor.features.CallLogging
-import io.ktor.features.Compression
-import io.ktor.features.DefaultHeaders
-import io.ktor.features.gzip
+import io.ktor.features.*
+import io.ktor.gson.gson
 import io.ktor.routing.routing
-import nauuu.router.Users
+import nauuu.domain.*
+import nauuu.router.SRoles
+import nauuu.router.SUsers
+import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.sql.transactions.transaction
+import java.text.DateFormat
 
 /**
  * Description
@@ -28,13 +32,25 @@ fun main(args: Array<String>) {
 
 fun Application.main() {
     connectDB(environment)
+    transaction {
+        create(Users, Groups, Roles, Folders, Files)
+    }
 
     install(DefaultHeaders)
     install(CallLogging)
     install(Compression) {
         gzip()
     }
-    routing {
-        Users()
+    install(ContentNegotiation) {
+        gson {
+            setDateFormat(DateFormat.LONG)
+            serializeNulls()
+            setPrettyPrinting()
+        }
     }
+    routing {
+        SUsers()
+        SRoles()
+    }
+    environment.monitor.subscribe(ApplicationStopped) { println("___bye___") }
 }
