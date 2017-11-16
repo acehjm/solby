@@ -15,6 +15,8 @@ buildscript {
 
 apply plugin: 'kotlin'
 
+mainClassName = 'io.ktor.server.netty.DevelopmentEngine'
+
 sourceCompatibility = 1.8
 
 compileKotlin {
