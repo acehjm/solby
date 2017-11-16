@@ -1,12 +1,9 @@
 # solby-backend
 
-----
-
 This project is a backend of file system management platform.
 
 ## Technologies used
 
-----
 + Language: [Kotlin](https://kotlin.link/)
 + Framework: [Ktor](http://ktor.io)
 + Engine: [Netty](http://netty.io/) used for server
@@ -15,7 +12,6 @@ This project is a backend of file system management platform.
 
 ## Developer guide
 
-----
 ### Prerequisite
 
 + Install [Git](https://git-scm.com/)
