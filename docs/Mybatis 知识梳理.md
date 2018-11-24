@@ -1,3 +1,5 @@
 # Mybatis 学习
-#学习
-mybatis 架构说明：
+
+Mybatis架构图：
+
+![Mybatis架构图](/Users/majhdk/Documents/思维导图/图片格式/Mybatis 架构.png)

@@ -47,7 +47,7 @@ public class MybatisPlusConfig {
      * @return
      */
     @Bean
-    @Profile({"dev", "test"})// 设置 dev test 环境开启
+    @Profile({"dev"/*, "test"*/})// 设置 dev test 环境开启
     public PerformanceInterceptor performanceInterceptor() {
         PerformanceInterceptor interceptor = new PerformanceInterceptor();
         interceptor.setMaxTime(100);  //SQL执行最大时长，超过该时间自动停止
