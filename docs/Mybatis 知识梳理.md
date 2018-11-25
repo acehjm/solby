@@ -2,5 +2,5 @@
 
 Mybatis架构图：
 
-![Mybatis架构图](https://github.com/acehjm/solby/blob/master/docs/images/Mybatis 架构.png)
+![Mybatis架构图](https://github.com/acehjm/solby/blob/master/docs/images/Mybatis%20structure.png)
 
