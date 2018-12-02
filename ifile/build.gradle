@@ -23,16 +23,11 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-aop')
-    implementation('org.springframework.boot:spring-boot-starter-web')
-    implementation('com.baomidou:mybatis-plus-boot-starter:3.0.6')
-    implementation('org.flywaydb:flyway-core')
-    runtimeOnly('org.postgresql:postgresql')
-    compileOnly('org.projectlombok:lombok')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
-}
 
-test {
-    enabled = false
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('com.opencsv:opencsv:4.4')
+    implementation('commons-io:commons-io:2.6')
+    implementation('org.apache.poi:poi-ooxml:3.17')
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
