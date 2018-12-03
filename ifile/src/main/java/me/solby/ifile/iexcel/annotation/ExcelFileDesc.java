@@ -12,8 +12,14 @@ import java.lang.annotation.*;
 @Inherited
 public @interface ExcelFileDesc {
 
-    String charset() default "utf-8";  //todo add after
+    /**
+     * 编码格式，暂时未使用，后续完善
+     */
+    String charset() default "utf-8";
 
+    /**
+     * 忽略的行，也是数据开始行
+     */
     int ignoreRows() default 0;
 
 }

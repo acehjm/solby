@@ -12,8 +12,15 @@ import java.lang.annotation.*;
 @Inherited
 public @interface ExcelColumnDesc {
 
+    /**
+     * 标题名称
+     */
     String title() default "";
 
+    /**
+     * Excel中的顺序
+     * 【1。最好是连续的数字，如：1，2，3】
+     */
     int order() default 0;
 
 }
