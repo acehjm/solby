@@ -1,11 +1,9 @@
 package me.solby.itool.tree;
 
-import org.springframework.util.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author majhdk
@@ -13,6 +11,8 @@ import java.util.Map;
  * @date 2018-12-22
  */
 public class TreeBuilder {
+
+    private TreeBuilder(){}
 
     /**
      * 树节点构造器
@@ -23,12 +23,12 @@ public class TreeBuilder {
      */
     public static List<Node> treeBuilder(List<Node> nodes, String currentNode) {
         List<Node> tree = new ArrayList<>();
-        if (ObjectUtils.isEmpty(nodes))
+        if (null == nodes || nodes.isEmpty())
             return tree;
 
         Map<String, List<Node>> map = new HashMap<>();
         for (Node node : nodes) {
-            if (!ObjectUtils.isEmpty(map.get(node.getParentTag()))) {
+            if (null != map.get(node.getParentTag())) {
                 map.get(node.getParentTag()).add(node);
             } else {
                 List<Node> list = new ArrayList<>();
@@ -40,8 +40,8 @@ public class TreeBuilder {
             if (map.containsKey(node.getUid())) {
                 node.setChildren(map.get(node.getUid()));
             }
-            if (ObjectUtils.isEmpty(currentNode) && ObjectUtils.isEmpty(node.getParentTag())
-                    || !ObjectUtils.isEmpty(currentNode) && ObjectUtils.nullSafeEquals(node.getUid(), currentNode)) {
+            if (StringUtils.isBlank(currentNode) && StringUtils.isBlank(node.getParentTag())
+                    || StringUtils.isNoneBlank(currentNode) && Objects.equals(node.getUid(), currentNode)) {
                 tree.add(node);
             }
         }

@@ -1,13 +1,11 @@
 package me.solby.itool.tree;
 
 import me.solby.itool.json.JsonUtil;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 /**
  * @author majhdk
@@ -16,10 +14,10 @@ import static org.junit.Assert.*;
  */
 public class TreeBuilderTest {
 
-    private List<Node> nodeList = new ArrayList<>();
+    private static List<Node> nodeList = new ArrayList<>();
 
-    @Before
-    public void setUp(){
+    @BeforeAll
+    public static void setUp(){
         Node node = new Node("001", "aaa", true, null);
         Node node1 = new Node("002", "bbb", false, null);
         Node node3 = new Node("003", "ccc", true, "001");
