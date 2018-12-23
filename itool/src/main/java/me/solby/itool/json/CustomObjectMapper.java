@@ -1,4 +1,4 @@
-package me.solby.ifile.json;
+package me.solby.itool.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;

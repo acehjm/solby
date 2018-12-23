@@ -1,4 +1,4 @@
-package me.solby.ifile.json;
+package me.solby.itool.json;
 
 /**
  * @author majhdk

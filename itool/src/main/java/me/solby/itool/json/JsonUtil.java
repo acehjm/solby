@@ -1,4 +1,4 @@
-package me.solby.ifile.json;
+package me.solby.itool.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
