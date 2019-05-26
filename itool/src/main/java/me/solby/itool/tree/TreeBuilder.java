@@ -3,7 +3,6 @@ package me.solby.itool.tree;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author majhdk
@@ -12,16 +11,17 @@ import java.util.stream.Collectors;
  */
 public class TreeBuilder {
 
-    private TreeBuilder(){}
+    private TreeBuilder() {
+    }
 
     /**
      * 树节点构造器
      *
-     * @param nodes 节点集合
-     * @param currentNode   标签
+     * @param nodes       节点集合
+     * @param currentNode 标签
      * @return
      */
-    public static List<Node> treeBuilder(List<Node> nodes, String currentNode) {
+    public static List<Node> tree(List<Node> nodes, String currentNode) {
         List<Node> tree = new ArrayList<>();
         if (null == nodes || nodes.isEmpty())
             return tree;

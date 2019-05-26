@@ -20,6 +20,9 @@ public class JsonUtil {
      */
     private static ObjectMapper objectMapper = new CustomObjectMapper();
 
+    private JsonUtil() {
+    }
+
     /**
      * 转为Json
      *
@@ -94,7 +97,7 @@ public class JsonUtil {
      */
     public static <T> T toPojo(String json, Class outer, Class inner) {
         JavaType javaType = objectMapper.getTypeFactory()
-                .constructParametricType(outer, new Class[]{inner});
+                .constructParametricType(outer, inner);
         try {
             return objectMapper.readValue(json, javaType);
         } catch (IOException e) {
@@ -108,9 +111,11 @@ public class JsonUtil {
      * @param json json数据
      * @return
      */
-    public static Map jsonToMap(String json) {
+    public static Map<String, Object> jsonToMap(String json) {
         try {
-            return objectMapper.readValue(json, Map.class);
+            TypeReference type = new TypeReference<Map<String, Object>>() {
+            };
+            return objectMapper.readValue(json, type);
         } catch (IOException e) {
             throw new JsonException("json parse map error", e);
         }
@@ -138,9 +143,6 @@ public class JsonUtil {
      */
     public static <T> T mapToPojo(Map map, TypeReference<T> type) {
         return objectMapper.convertValue(map, type);
-    }
-
-    private JsonUtil() {
     }
 
 }

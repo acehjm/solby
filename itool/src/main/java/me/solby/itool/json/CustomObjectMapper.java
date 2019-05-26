@@ -19,6 +19,7 @@ class CustomObjectMapper extends ObjectMapper {
     private static final String DATE_FORMAT_PATTERN = "yyyy-mm-dd HH:mm:ss";
 
     CustomObjectMapper() {
+        //todo 添加java8时间支持
         this.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         this.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         this.setDateFormat(new SimpleDateFormat(DATE_FORMAT_PATTERN));

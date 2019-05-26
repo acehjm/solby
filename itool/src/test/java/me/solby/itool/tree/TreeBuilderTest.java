@@ -34,12 +34,12 @@ public class TreeBuilderTest {
 
     @Test
     public void treeBuilder() {
-        List<Node> node1 = TreeBuilder.treeBuilder(nodeList, null);
+        List<Node> node1 = TreeBuilder.tree(nodeList, null);
         System.out.println(JsonUtil.toJson(node1));
 
         System.out.println("-----------------------------------------");
 
-        List<Node> node2 = TreeBuilder.treeBuilder(nodeList, "002");
+        List<Node> node2 = TreeBuilder.tree(nodeList, "002");
         System.out.println(JsonUtil.toJson(node2));
     }
 }
