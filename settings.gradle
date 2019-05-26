@@ -2,4 +2,5 @@ rootProject.name = 'solby'
 include 'xboot'
 include 'ifile'
 include 'itool'
+include 'xoauth'
 
