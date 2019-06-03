@@ -1,0 +1,62 @@
+/**
+ * 全局配置
+ */
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+/**
+ * 所有项目生效
+ */
+allprojects {
+    group = 'me.solby'
+    version = '0.0.2-SNAPSHOT'
+}
+
+
+/**
+ * 所有子项目生效
+ */
+subprojects {
+
+    apply plugin: 'java'
+    //apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 11
+
+    // java编译的时候缺省状态下会因为中文字符而失败
+    [compileJava,compileTestJava,javadoc]*.options*.encoding = 'UTF-8'
+
+    /**
+     * 子项目通用依赖
+     */
+    dependencies {
+        implementation('org.springframework.boot:spring-boot-starter-aop')
+        implementation('org.springframework.boot:spring-boot-starter-web')
+
+        compileOnly('org.projectlombok:lombok')
+    }
+
+//    dependencyManagement {
+//        imports {
+//            mavenBom 'org.springframework.boot:spring-boot-starter-parent:${springBootVersion}'
+//        }
+//    }
+
+    test {
+        enabled = false
+    }
+
+}

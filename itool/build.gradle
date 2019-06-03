@@ -4,11 +4,6 @@ buildscript {
 
 apply plugin: 'java'
 
-group = 'me.solby'
-version '0.0.1-SNAPSHOT'
-
-sourceCompatibility = 11
-
 repositories {
     mavenCentral()
 }
@@ -16,9 +11,6 @@ repositories {
 dependencies {
     implementation('com.fasterxml.jackson.core:jackson-databind:2.9.8')
     implementation('org.apache.commons:commons-lang3:3.8.1')
-//    implementation('org.slf4j:slf4j-api:1.8.0-beta4')
-//    implementation('ch.qos.logback:logback-classic:1.2.3')
-//    implementation('ch.qos.logback:logback-core:1.2.3')
     compileOnly('org.projectlombok:lombok:1.18.4')
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.3.2')
 }

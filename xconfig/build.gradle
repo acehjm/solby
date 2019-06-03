@@ -1,0 +1,10 @@
+/**
+ * 配置服务
+ */
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    
+}

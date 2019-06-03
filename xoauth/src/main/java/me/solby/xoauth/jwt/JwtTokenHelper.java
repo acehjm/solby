@@ -15,7 +15,6 @@ import java.util.Map;
 /**
  * JWT 工具类
  * - spring security 实现
- * - NOTE: 有问题，待修复
  *
  * @author majhdk
  * @date 2019-05-25
