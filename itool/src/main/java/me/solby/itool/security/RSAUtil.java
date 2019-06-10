@@ -101,7 +101,7 @@ public class RSAUtil {
      * @param publicKey 公钥(Base64)
      * @return Base64字符串
      */
-    public static String encryptByPublicKey(String data, String publicKey) {
+    public static String encryptByPublicKey(final String data, final String publicKey) {
         byte[] dataBytes = data.getBytes(StandardCharsets.UTF_8);
         byte[] keyBytes = Base64.getDecoder().decode(publicKey);
 
@@ -120,7 +120,7 @@ public class RSAUtil {
      * @param privateKey 私钥(Base64)
      * @return Base64字符串
      */
-    public static String encryptByPrivateKey(String data, String privateKey) {
+    public static String encryptByPrivateKey(final String data, final String privateKey) {
         byte[] dataBytes = data.getBytes(StandardCharsets.UTF_8);
         byte[] keyBytes = Base64.getDecoder().decode(privateKey);
 
@@ -139,7 +139,7 @@ public class RSAUtil {
      * @param publicKey  公钥(Base64)
      * @return 字符串
      */
-    public static String decryptByPublicKey(String base64Data, String publicKey) {
+    public static String decryptByPublicKey(final String base64Data, final String publicKey) {
         byte[] dataBytes = Base64.getDecoder().decode(base64Data);
         byte[] keyBytes = Base64.getDecoder().decode(publicKey.getBytes(StandardCharsets.UTF_8));
 
@@ -158,7 +158,7 @@ public class RSAUtil {
      * @param privateKey 私钥(Base64)
      * @return 字符串
      */
-    public static String decryptByPrivateKey(String base64Data, String privateKey) {
+    public static String decryptByPrivateKey(final String base64Data, final String privateKey) {
         byte[] dataBytes = Base64.getDecoder().decode(base64Data);
         byte[] keyBytes = Base64.getDecoder().decode(privateKey);
 
@@ -181,7 +181,7 @@ public class RSAUtil {
      * @return
      * @throws Exception
      */
-    private static byte[] encryptByPublicKey(byte[] data, byte[] publicKey) throws Exception {
+    private static byte[] encryptByPublicKey(final byte[] data, final byte[] publicKey) throws Exception {
         // 得到公钥
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKey);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
@@ -200,7 +200,7 @@ public class RSAUtil {
      * @return
      * @throws Exception
      */
-    private static byte[] encryptByPrivateKey(byte[] data, byte[] privateKey) throws Exception {
+    private static byte[] encryptByPrivateKey(final byte[] data, final byte[] privateKey) throws Exception {
         // 得到私钥
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKey);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
@@ -219,7 +219,7 @@ public class RSAUtil {
      * @return
      * @throws Exception
      */
-    private static byte[] decryptByPublicKey(byte[] data, byte[] publicKey) throws Exception {
+    private static byte[] decryptByPublicKey(final byte[] data, final byte[] publicKey) throws Exception {
         // 得到公钥
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(publicKey);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
@@ -238,7 +238,7 @@ public class RSAUtil {
      * @return
      * @throws Exception
      */
-    private static byte[] decryptByPrivateKey(byte[] data, byte[] privateKey) throws Exception {
+    private static byte[] decryptByPrivateKey(final byte[] data, final byte[] privateKey) throws Exception {
         // 得到私钥
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(privateKey);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);

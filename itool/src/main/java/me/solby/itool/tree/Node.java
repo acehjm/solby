@@ -37,7 +37,7 @@ public class Node {
      */
     private List<Node> children;
 
-    public Node(String uid, String name, Boolean checked, String parentTag){
+    public Node(String uid, String name, Boolean checked, String parentTag) {
         this.uid = uid;
         this.name = name;
         this.checked = checked;

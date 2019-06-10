@@ -1,4 +1,4 @@
-package me.solby.itool.json;
+package me.solby.itool.exception;
 
 /**
  * @author majhdk
@@ -7,11 +7,11 @@ package me.solby.itool.json;
  */
 public class JsonException extends RuntimeException {
 
-    JsonException(String message) {
+    public JsonException(String message) {
         super(message);
     }
 
-    JsonException(String message, Throwable throwable) {
+    public JsonException(String message, Throwable throwable) {
         super(message, throwable);
     }
 

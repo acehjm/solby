@@ -21,7 +21,7 @@ public class SHAUtil {
      * @param data
      * @return
      */
-    public static String sha256HexBase64(String data) {
+    public static String sha256HexBase64(final String data) {
         byte[] bytes = sha256Hex(data.getBytes(StandardCharsets.UTF_8));
         return new String(Base64Codec.encode(bytes), StandardCharsets.UTF_8);
     }
@@ -32,7 +32,7 @@ public class SHAUtil {
      * @param data
      * @return
      */
-    public static String sha256Hex(String data) {
+    public static String sha256Hex(final String data) {
         byte[] bytes = sha256Hex(data.getBytes(StandardCharsets.UTF_8));
         return Hex.encodeHexString(bytes);
     }
@@ -43,7 +43,7 @@ public class SHAUtil {
      * @param bytes
      * @return
      */
-    public static byte[] sha256Hex(byte[] bytes) {
+    public static byte[] sha256Hex(final byte[] bytes) {
         return shaAlgorithmHex(bytes, "SHA-256");
     }
 
@@ -54,7 +54,7 @@ public class SHAUtil {
      * @param algorithm
      * @return
      */
-    public static String shaAlgorithmHex(String data, String algorithm) {
+    public static String shaAlgorithmHex(final String data, final String algorithm) {
         byte[] bytes = shaAlgorithmHex(data.getBytes(StandardCharsets.UTF_8), algorithm);
         return Hex.encodeHexString(bytes);
     }
@@ -66,7 +66,7 @@ public class SHAUtil {
      * @param algorithm
      * @return
      */
-    public static String shaAlgorithmHexBase64(String data, String algorithm) {
+    public static String shaAlgorithmHexBase64(final String data, final String algorithm) {
         byte[] bytes = shaAlgorithmHex(data.getBytes(StandardCharsets.UTF_8), algorithm);
         return new String(Base64Codec.encode(bytes), StandardCharsets.UTF_8);
     }
@@ -78,7 +78,7 @@ public class SHAUtil {
      * @param algorithm
      * @return
      */
-    public static byte[] shaAlgorithmHex(byte[] bytes, String algorithm) {
+    public static byte[] shaAlgorithmHex(final byte[] bytes, final String algorithm) {
         try {
             MessageDigest digest = MessageDigest.getInstance(algorithm);
             return digest.digest(bytes);

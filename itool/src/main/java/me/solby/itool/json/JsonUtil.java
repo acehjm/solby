@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import me.solby.itool.exception.JsonException;
 
 import java.io.IOException;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class JsonUtil {
      * @param <T>  泛型对象
      * @return
      */
-    public static <T> String toJson(T pojo) {
+    public static <T> String toJson(final T pojo) {
         try {
             return objectMapper.writeValueAsString(pojo);
         } catch (JsonProcessingException e) {
@@ -46,7 +47,7 @@ public class JsonUtil {
      * @param <T>  泛型对象
      * @return
      */
-    public static <T> T fromJson(String json, Class<T> type) {
+    public static <T> T fromJson(final String json, final Class<T> type) {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
@@ -62,7 +63,7 @@ public class JsonUtil {
      * @param <T>  泛型类型
      * @return
      */
-    public static <T> T toPojo(String json, TypeReference<T> type) {
+    public static <T> T toPojo(final String json, final TypeReference<T> type) {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
@@ -78,7 +79,7 @@ public class JsonUtil {
      * @param <T>  泛型类型
      * @return
      */
-    public static <T> T toCollection(String json, TypeReference<T> type) {
+    public static <T> T toCollection(final String json, final TypeReference<T> type) {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
@@ -95,7 +96,7 @@ public class JsonUtil {
      * @param <T>   泛型对象
      * @return
      */
-    public static <T> T toPojo(String json, Class outer, Class inner) {
+    public static <T> T toPojo(final String json, final Class outer, final Class inner) {
         JavaType javaType = objectMapper.getTypeFactory()
                 .constructParametricType(outer, inner);
         try {
@@ -111,7 +112,7 @@ public class JsonUtil {
      * @param json json数据
      * @return
      */
-    public static Map<String, Object> jsonToMap(String json) {
+    public static Map<String, Object> jsonToMap(final String json) {
         try {
             TypeReference type = new TypeReference<Map<String, Object>>() {
             };
@@ -129,7 +130,7 @@ public class JsonUtil {
      * @param <T>  泛型类型
      * @return
      */
-    public static <T> T mapToPojo(Map map, Class<T> type) {
+    public static <T> T mapToPojo(final Map map, final Class<T> type) {
         return objectMapper.convertValue(map, type);
     }
 
@@ -141,7 +142,7 @@ public class JsonUtil {
      * @param <T>  泛型类型
      * @return
      */
-    public static <T> T mapToPojo(Map map, TypeReference<T> type) {
+    public static <T> T mapToPojo(final Map map, final TypeReference<T> type) {
         return objectMapper.convertValue(map, type);
     }
 
