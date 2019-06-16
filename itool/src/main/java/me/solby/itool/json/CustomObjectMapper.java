@@ -3,6 +3,9 @@ package me.solby.itool.json;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import java.text.SimpleDateFormat;
 
@@ -19,10 +22,12 @@ class CustomObjectMapper extends ObjectMapper {
     private static final String DATE_FORMAT_PATTERN = "yyyy-mm-dd HH:mm:ss";
 
     CustomObjectMapper() {
-        //todo 添加java8时间支持
         this.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         this.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         this.setDateFormat(new SimpleDateFormat(DATE_FORMAT_PATTERN));
+
+        //models
+        this.registerModules(new Jdk8Module(), new JavaTimeModule(), new ParameterNamesModule());
     }
 
 }
