@@ -49,7 +49,7 @@ public class HttpClientUtil {
                 //cookie处理
 //                .cookieHandler(CookieHandler.getDefault())
                 //连接池
-                .executor(Executors.newFixedThreadPool(2))
+                .executor(Executors.newFixedThreadPool(3))
                 .build();
     }
 
@@ -110,9 +110,7 @@ public class HttpClientUtil {
      * @return HttpResponse
      */
     public static HttpResponse<Path> downloadFile(final URI uri, final Path savePath) {
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(uri)
-                .build();
+        HttpRequest request = HttpRequest.newBuilder().uri(uri).build();
 
         try {
             return httpClient.send(request, HttpResponse.BodyHandlers.ofFile(savePath));
@@ -212,7 +210,8 @@ public class HttpClientUtil {
      * @param requestBody json参数
      * @return HttpResponse
      */
-    public static HttpResponse<String> syncSendPutWithJson(final URI uri, final Map<String, String> headers, final String requestBody) {
+    public static HttpResponse<String> syncSendPutWithJson(final URI uri, final Map<String, String> headers,
+                                                           final String requestBody) {
         var request = putRequest(uri, headers, requestBody);
         try {
             return httpClient.send(request, HttpResponse.BodyHandlers.ofString());
@@ -243,7 +242,8 @@ public class HttpClientUtil {
      * @param form    表单参数
      * @return HttpResponse
      */
-    public static HttpResponse<String> syncSendPutWithForm(final URI uri, final Map<String, String> headers, final Map<String, String> form) {
+    public static HttpResponse<String> syncSendPutWithForm(final URI uri, final Map<String, String> headers,
+                                                           final Map<String, String> form) {
         var request = putRequest(uri, headers, getForm(form));
         try {
             return httpClient.send(request, HttpResponse.BodyHandlers.ofString());

@@ -2,6 +2,8 @@ package me.solby.itool.verify;
 
 import me.solby.itool.exception.VerifyException;
 
+import java.util.Objects;
+
 /**
  * 自定义校验工具类
  *
@@ -45,7 +47,7 @@ public class CheckUtil {
      * @param message
      */
     public static void checkEquals(Object obj1, Object obj2, String message) {
-        if (!obj1.equals(obj2)) {
+        if (!Objects.equals(obj1, obj2)) {
             throw new VerifyException(message);
         }
     }
@@ -57,8 +59,8 @@ public class CheckUtil {
      * @param obj2
      * @param message
      */
-    public static void checkNotEquals(Object obj1, Object obj2, String message) {
-        if (obj1.equals(obj2)) {
+    public static void checkNotEquals(final Object obj1, final Object obj2, String message) {
+        if (Objects.equals(obj1, obj2)) {
             throw new VerifyException(message);
         }
     }
@@ -69,7 +71,7 @@ public class CheckUtil {
      * @param obj
      * @param message
      */
-    public static void checkEmpty(Object obj, String message) {
+    public static void checkEmpty(final Object obj, final String message) {
         if (ObjectUtil.isNotEmpty(obj)) {
             throw new VerifyException(message);
         }
@@ -81,7 +83,7 @@ public class CheckUtil {
      * @param obj
      * @param message
      */
-    public static void checkNotEmpty(Object obj, String message) {
+    public static void checkNotEmpty(final Object obj, final String message) {
         if (ObjectUtil.isEmpty(obj)) {
             throw new VerifyException(message);
         }
