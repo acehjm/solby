@@ -1,0 +1,33 @@
+spring:
+  main:
+    banner-mode: console
+  application:
+    name: xquartz
+  # quartz config
+  quartz:
+    auto-startup: true    # 自动启动
+    wait-for-jobs-to-complete-on-shutdown: true   # 任务完成后关闭
+    overwrite-existing-jobs: true   # 覆盖已存在任务
+    scheduler-name: SolbyScheduler   # 自定义模式名称
+    startup-delay: 1s     # 延迟1s启动
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always
+#      schema: classpath:org/quartz/impl/jdbcjobstore/tables_postgres.sql
+    properties:
+      org.quartz.scheduler.instanceId: AUTO   # 实例id
+      org.quartz.scheduler.instanceName: SolbyQuartzScheduler  #实例名称
+      # jobStore
+      org.quartz.jobStore.class: org.quartz.impl.jdbcjobstore.JobStoreTX  # jobStore实现类
+      org.quartz.jobStore.driverDelegateClass: org.quartz.impl.jdbcjobstore.PostgreSQLDelegate  # 方言
+      org.quartz.jobStore.dataSource:  sods  # quartz默认使用了c3p0，配置数据源名称
+#      org.quartz.jobStore.isClustered: true    # 打开集群配置
+#      org.quartz.jobStore.clusterCheckinInterval: 2000  # 设置集群检查间隔20s
+#      org.quartz.jobStore.useProperties: false
+      # datasource 使用quartz自带数据源配置，降低耦合性，待添加独立数据源配置，去掉该配置
+      org.quartz.dataSource.sods.driver: org.postgresql.Driver
+      org.quartz.dataSource.sods.URL: jdbc:postgresql://localhost:5432/quartz
+      org.quartz.dataSource.sods.user: postgres
+      org.quartz.dataSource.sods.password: postgres
+      org.quartz.dataSource.sods.maxConnections: 10
+
