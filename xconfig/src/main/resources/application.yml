@@ -16,3 +16,15 @@ spring:
       shutdown-timeout: 100ms
     port: 6379
     password:             # Redis服务器连接密码（默认为空）
+
+
+thread:
+  pool:
+    corePoolSize: 3
+    maxPoolSize: 5
+    queueCapacity: 20
+    keepAliveSeconds: 30
+    allowCoreThreadTimeOut: true
+    threadNamePrefix: custom-thread-
+    waitForTasksToCompleteOnShutdown: true
+    rejectedExecutionHandler: AbortPolicy

@@ -52,13 +52,45 @@ public class RedisCacheHandler {
     }
 
     /**
-     * 实现命令：INCR key，增加key一次
+     * 实现命令：INCR key
      *
      * @param key
      * @return
      */
+    public Long incr(String key) {
+        return redisTemplate.opsForValue().increment(key);
+    }
+
+    /**
+     * 实现命令：INCR key
+     *
+     * @param key
+     * @param delta
+     * @return
+     */
     public Long incr(String key, long delta) {
         return redisTemplate.opsForValue().increment(key, delta);
+    }
+
+    /**
+     * 实现命令：DECR key
+     *
+     * @param key
+     * @return
+     */
+    public Long decr(String key) {
+        return redisTemplate.opsForValue().decrement(key);
+    }
+
+    /**
+     * 实现命令：DECR key
+     *
+     * @param key
+     * @param delta
+     * @return
+     */
+    public Long decr(String key, long delta) {
+        return redisTemplate.opsForValue().decrement(key, delta);
     }
 
     /**
