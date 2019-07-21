@@ -20,7 +20,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author majhdk
  * @date 2019-06-23
  */
-public class Sequence {
+class Sequence {
 
     private static final Log logger = LogFactory.getLog(Sequence.class);
     /**

@@ -5,7 +5,7 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 /**
- * 进制转换
+ * 16进制转换
  *
  * @author majhdk
  * @date 2019-06-08

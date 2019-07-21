@@ -1,0 +1,50 @@
+spring:
+  application:
+    name: xboot
+  main:
+    banner-mode: console
+  profiles:
+    active: dev
+
+
+  # spring boot restful 404 needed
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+  # datasource
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://127.0.0.1:5432/postgres?useSSL=false
+    username: postgres
+    password: root
+  # flyway
+  flyway:
+    schemas: public
+    baseline-on-migrate: true
+    table: schema_version
+
+
+# mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: me.solby.xboot.**.entity
+  global-config:
+    db-config:
+      id-type: id_worker
+      field-strategy: default
+      table-underline: true
+      column-like: true
+      # 逻辑删除
+      logic-delete-value: -1
+      # 逻辑不删除
+      logic-not-delete-value: 0
+      # 表前缀（组件多的话可以按组件配置表前缀
+    #      table-prefix: t_
+    banner: false
+    # 是否缓存SQL解析
+#    sql-parser-cache: true
+  configuration:
+    map-underscore-to-camel-case: true
+   # 执行器类型，simple=每个sql都有一个执行器，reuse=复用执行器
+#    default-executor-type: reuse

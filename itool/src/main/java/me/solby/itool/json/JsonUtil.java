@@ -35,7 +35,7 @@ public class JsonUtil {
         try {
             return objectMapper.writeValueAsString(pojo);
         } catch (JsonProcessingException e) {
-            throw new JsonException("transform json string error", e);
+            throw new JsonException("transform json string exception", e);
         }
     }
 
@@ -51,7 +51,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
-            throw new JsonException("parse json object error", e);
+            throw new JsonException("parse json object exception", e);
         }
     }
 
@@ -67,7 +67,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
-            throw new JsonException("parse json pojo error", e);
+            throw new JsonException("parse json pojo exception", e);
         }
     }
 
@@ -83,7 +83,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
-            throw new JsonException("parse json collection error", e);
+            throw new JsonException("parse json collection exception", e);
         }
     }
 
@@ -102,7 +102,7 @@ public class JsonUtil {
         try {
             return objectMapper.readValue(json, javaType);
         } catch (IOException e) {
-            throw new JsonException("parse json pojo with class type error", e);
+            throw new JsonException("parse json pojo with class type exception", e);
         }
     }
 
@@ -118,7 +118,7 @@ public class JsonUtil {
             };
             return objectMapper.readValue(json, type);
         } catch (IOException e) {
-            throw new JsonException("json parse map error", e);
+            throw new JsonException("json parse map exception", e);
         }
     }
 

@@ -140,7 +140,7 @@ public class ImportHandler {
             try {
                 workbook.close();  //关闭工作簿
             } catch (IOException e) {
-                logger.error("An error occurred while closing the workbook", e);
+                logger.error("An exception occurred while closing the workbook", e);
             }
         }
         return list;
@@ -175,7 +175,7 @@ public class ImportHandler {
                 workbook = new XSSFWorkbook(is);  //2007及更高版本
             }
         } catch (IOException e) {
-            throw new ExcelException("file io error", e);
+            throw new ExcelException("file io exception", e);
         }
         return workbook;
     }

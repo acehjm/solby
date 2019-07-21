@@ -56,7 +56,7 @@ public class ExportHandler {
             workbook.write(os);  //写入流
             os.flush();
         } catch (IOException e) {
-            throw new ExcelException("Write response error.", e);
+            throw new ExcelException("Write response exception.", e);
         }
     }
 
@@ -78,7 +78,7 @@ public class ExportHandler {
         } catch (FileNotFoundException e) {
             throw new ExcelException("File not found.", e);
         } catch (IOException e) {
-            throw new ExcelException("Write file error.", e);
+            throw new ExcelException("Write file exception.", e);
         }
     }
 

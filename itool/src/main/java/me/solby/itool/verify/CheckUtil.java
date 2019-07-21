@@ -21,7 +21,7 @@ public class CheckUtil {
      * @param result
      * @param message
      */
-    public static void checkTrue(boolean result, String message) {
+    public static void checkTrue(final boolean result, final String message) {
         if (!result) {
             throw new VerifyException(message);
         }
@@ -33,7 +33,7 @@ public class CheckUtil {
      * @param result
      * @param message
      */
-    public static void checkFalse(boolean result, String message) {
+    public static void checkFalse(final boolean result, final String message) {
         if (result) {
             throw new VerifyException(message);
         }
@@ -46,7 +46,7 @@ public class CheckUtil {
      * @param obj2
      * @param message
      */
-    public static void checkEquals(Object obj1, Object obj2, String message) {
+    public static void checkEquals(final Object obj1, final Object obj2, final String message) {
         if (!Objects.equals(obj1, obj2)) {
             throw new VerifyException(message);
         }
@@ -59,7 +59,7 @@ public class CheckUtil {
      * @param obj2
      * @param message
      */
-    public static void checkNotEquals(final Object obj1, final Object obj2, String message) {
+    public static void checkNotEquals(final Object obj1, final Object obj2, final String message) {
         if (Objects.equals(obj1, obj2)) {
             throw new VerifyException(message);
         }

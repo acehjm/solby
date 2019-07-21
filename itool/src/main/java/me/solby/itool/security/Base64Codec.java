@@ -386,7 +386,7 @@ final class Base64Codec {
      * @param len     Length of data to convert
      * @param options Specified options
      * @return The Base64-encoded data as a String
-     * @throws java.io.IOException      if there is an error
+     * @throws java.io.IOException      if there is an exception
      * @throws NullPointerException     if source array is null
      * @throws IllegalArgumentException if source array, offset, or length are invalid
      * @see Base64Codec#DO_BREAK_LINES
@@ -495,7 +495,7 @@ final class Base64Codec {
             byte[] source, int srcOffset,
             byte[] destination, int destOffset, int options) {
 
-        // Lots of error checking and exception throwing
+        // Lots of exception checking and exception throwing
         if (source == null) {
             throw new NullPointerException("Source array was null.");
         }   // end if
@@ -580,7 +580,7 @@ final class Base64Codec {
      */
     static byte[] decode(byte[] source, int off, int len, int options) {
 
-        // Lots of error checking and exception throwing
+        // Lots of exception checking and exception throwing
         if (source == null) {
             throw new NullPointerException("Cannot decode null source array.");
         }   // end if
