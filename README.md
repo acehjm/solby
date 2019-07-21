@@ -1,5 +1,7 @@
 ### Solby
 
+https://img.shields.io/hexpm/l/Apache 2.svg
+
 > Solby is a Spring boot-based scaffolding that has been combed out in the process of continuous improvement.
 
 
