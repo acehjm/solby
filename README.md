@@ -7,7 +7,7 @@
 
 - Development environment：[OpenJDK11](https://openjdk.java.net/projects/jdk/11)；
 - Build tool：[Gradle](https://gradle.org/)；
-- Development Framework：[Spring boot](https://spring.io/projects/spring-boot)，[mybatis-plus](https://github.com/baomidou/mybatis-plus)；
+- Development Framework：[Spring boot](https://spring.io/projects/spring-boot)，[mybatis-plus](https://github.com/baomidou/mybatis-plus), etc；
 
 #### Project module description
 
