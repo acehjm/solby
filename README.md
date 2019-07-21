@@ -1,28 +1,36 @@
 ### Solby
 
-> solby是一个学习中梳理出来的基于Spring boot的脚手架，在不断的完善中。
->
-> 会到什么样的程度不得而知，但是会不断的添砖加瓦，丰富它。
+> Solby is a Spring boot-based scaffolding that has been combed out in the process of continuous improvement.
 
-<u>备注</u>
 
- ***项目环境*** 
+#### 项目环境
 
-- jdk11 更快更好用；
-- gradle 构建项目；
-- Spring boot 框架；
+- Development environment：[OpenJDK11](https://openjdk.java.net/projects/jdk/11)；
+- Build tool：[Gradle](https://gradle.org/)；
+- Development Framework：[Spring boot](https://spring.io/projects/spring-boot)，[mybatis-plus](https://github.com/baomidou/mybatis-plus)；
 
-***项目模块说明***
+#### Project module description
 
 1. **ifile**
 
-   ifile是一个文件相关的模块，包括excel和csv的导入导出、文件大小、文件Hash、文件后缀的校验等。
+   ifile is a file-related module, including import and export of excel and csv, file size, file hash, file suffix check, etc.
 
-1. **itool**
+2. **itool**
 
-   itool是一个通用模块，里面有json解析的封装、安全相关的工具类、树的操作、通用校验等。
+   itool is a generic module with json parsing packages, security-related tool classes, tree operations, and generic validation.
+   
+3. **xoauth**
 
-2. **xoauth**
+   xoauth is an authorized login module that provides authorization and verification services for business modules.
 
-   xoauth是一个授权登录模块，为业务模块提供授权及校验服务。
+4. **xquartz**
+   
+   xquratz is a timed task service based on java quzrtz.
+   
+5. **xconfig**
 
+   xconfig is a service that includes configurations such as redis, thread pool, and related tools.
+
+6. **xboot**
+
+   xboot is a service including webmvc, datasource, mybatis-plus, flyway, etc.
