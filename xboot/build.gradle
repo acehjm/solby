@@ -9,6 +9,8 @@ repositories {
 dependencies {
     implementation project(':itool')
 
+    implementation('org.springframework.boot:spring-boot-starter-actuator')
+
     implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9')
     implementation('com.fasterxml.jackson.module:jackson-datatype-jdk8:2.9.9')
     implementation('com.fasterxml.jackson.module:jackson-datatype-jsr310:2.9.9')
