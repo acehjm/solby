@@ -3,7 +3,7 @@
 > Solby is a Spring boot-based scaffolding that has been combed out in the process of continuous improvement.
 
 
-#### 项目环境
+#### Project environment
 
 - Development environment：[OpenJDK11](https://openjdk.java.net/projects/jdk/11)；
 - Build tool：[Gradle](https://gradle.org/)；
@@ -24,7 +24,7 @@
    xoauth is an authorized login module that provides authorization and verification services for business modules.
 
 4. **xquartz**
-   
+
    xquratz is a timed task service based on java quzrtz.
    
 5. **xconfig**
