@@ -1,6 +1,6 @@
 package me.solby.itool.verify;
 
-import me.solby.itool.tree.Node;
+import me.solby.itool.tree.TNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -41,7 +41,7 @@ class ObjectUtilTest {
         assertTrue(ObjectUtil.isNotEmpty(new int[]{1, 2}));
         assertFalse(ObjectUtil.isNotEmpty(new int[]{}));
         assertFalse(ObjectUtil.isNotEmpty(Map.of()));
-        assertTrue(ObjectUtil.isNotEmpty(new Node("11", null, null, null)));
+        assertTrue(ObjectUtil.isNotEmpty(new TNode("11", null, null, null)));
         assertFalse(ObjectUtil.isNotEmpty(Collections.EMPTY_SET));
     }
 

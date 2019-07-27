@@ -4,13 +4,25 @@ buildscript {
 
 apply plugin: 'java'
 
+group 'me.solby'
+version '0.0.2-SNAPSHOT'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    implementation('com.fasterxml.jackson.core:jackson-databind:2.9.8')
+    implementation('com.fasterxml.jackson.core:jackson-databind:2.9.9')
+    implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9')
+
     implementation('org.apache.commons:commons-lang3:3.8.1')
-    compileOnly('org.projectlombok:lombok:1.18.4')
+    implementation('commons-logging:commons-logging:1.2')
+    compileOnly('org.projectlombok:lombok:1.18.8')
+//    annotationProcessor('org.projectlombok:lombok:1.18.8')
     testImplementation('org.junit.jupiter:junit-jupiter-api:5.3.2')
 }

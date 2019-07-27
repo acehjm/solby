@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2018-12-22
  */
 @Data
-public class Node {
+public class TNode {
 
     /**
      * 树节点唯一ID
@@ -35,9 +35,12 @@ public class Node {
     /**
      * 树节点的子节点
      */
-    private List<Node> children;
+    private List<TNode> children;
 
-    public Node(String uid, String name, Boolean checked, String parentTag) {
+    public TNode() {
+    }
+
+    public TNode(String uid, String name, Boolean checked, String parentTag) {
         this.uid = uid;
         this.name = name;
         this.checked = checked;
