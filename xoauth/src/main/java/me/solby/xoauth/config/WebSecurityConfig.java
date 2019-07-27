@@ -114,7 +114,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * Rest授权认证
      */
-    class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
+    static class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
         /**
          * 认证失败返回信息

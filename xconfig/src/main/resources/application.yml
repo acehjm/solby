@@ -3,7 +3,7 @@ spring:
     banner-mode: console
   application:
     name: xconfig
-  # redis config
+  # redis configuration
   redis:
     host: localhost
     database: 0           # Redis数据库索引（默认为0）
@@ -17,7 +17,7 @@ spring:
     port: 6379
     password:             # Redis服务器连接密码（默认为空）
 
-
+# custom thread pool configuration
 thread:
   pool:
     corePoolSize: 3
