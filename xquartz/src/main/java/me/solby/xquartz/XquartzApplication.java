@@ -2,7 +2,6 @@ package me.solby.xquartz;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * me.solby.xquartz
@@ -10,7 +9,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @author majhdk
  * @date 2019-06-16
  */
-@EnableScheduling
 @SpringBootApplication
 public class XquartzApplication {
 

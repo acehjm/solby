@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.quartz.SpringBeanJobFactory;
 
 /**
@@ -15,6 +16,7 @@ import org.springframework.scheduling.quartz.SpringBeanJobFactory;
  * @author majhdk
  * @date 2019-06-21
  */
+@EnableScheduling
 @Configuration
 public class QuartzConfig {
 
@@ -34,7 +36,7 @@ public class QuartzConfig {
     /**
      * 配置JobFactory,为quartz作业添加自动连接支持
      */
-    public final class AutowiringSpringBeanJobFactory extends SpringBeanJobFactory implements ApplicationContextAware {
+    public static final class AutowiringSpringBeanJobFactory extends SpringBeanJobFactory implements ApplicationContextAware {
 
         private transient AutowireCapableBeanFactory beanFactory;
 
