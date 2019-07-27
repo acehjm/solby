@@ -12,8 +12,8 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-actuator')
 
     implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9')
-    implementation('com.fasterxml.jackson.module:jackson-datatype-jdk8:2.9.9')
-    implementation('com.fasterxml.jackson.module:jackson-datatype-jsr310:2.9.9')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9')
+    implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9')
     
     implementation('com.baomidou:mybatis-plus-boot-starter:3.0.6')
     implementation('org.flywaydb:flyway-core')

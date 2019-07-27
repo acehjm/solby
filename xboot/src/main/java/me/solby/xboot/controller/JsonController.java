@@ -47,6 +47,9 @@ public class JsonController {
     @PostMapping
     public Result postJson(@RequestBody JsonDemoVO demoVO) {
         System.out.println(JsonUtil.toJson(demoVO));
+        if (true) {
+            throw new BusinessException("xxxxx");
+        }
         throw new BusinessException(new BaseError() {
             @Override
             public String getMessage() {
