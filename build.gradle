@@ -3,7 +3,7 @@
  */
 buildscript {
     ext {
-        springBootVersion = '2.1.0.RELEASE'
+        springBootVersion = '2.1.6.RELEASE'
     }
 
     repositories {
@@ -27,6 +27,10 @@ allprojects {
  * 所有子项目生效
  */
 subprojects {
+    // 子项目排除工具模块
+    if (project.name == 'itool') {
+        return
+    }
 
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
