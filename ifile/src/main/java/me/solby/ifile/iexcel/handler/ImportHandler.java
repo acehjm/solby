@@ -7,7 +7,11 @@ import me.solby.ifile.iexcel.exception.ExcelException;
 import me.solby.itool.json.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -187,21 +191,17 @@ public class ImportHandler {
      */
     private void checkFile(MultipartFile multipartFile) {
         if (null == multipartFile) {  //校验文件是否为空
-            logger.error("Excel file does not exist");
             throw new ExcelException("Excel file does not exist");
         }
         String name = multipartFile.getOriginalFilename();
         name = name == null ? "" : name;  //避免空指针异常
         if (!name.endsWith(EXCEL_HSSF_SUFFIX) && !name.endsWith(EXCEL_XSSF_SUFFIX)) {//校验文件是否Excel文件
-            logger.error("Not a valid Excel file");
             throw new ExcelException("Not a valid Excel file");
         }
         if (multipartFile.getSize() <= EXCEL_MINIMUM) {  //校验文件大小
-            logger.error("Excel file is empty");
             throw new ExcelException("Excel file is empty");
         }
         if (multipartFile.getSize() > EXCEL_MAXIMUM) {  //校验文件大小
-            logger.error("The maximum file limit is " + EXCEL_MAXIMUM);
             throw new ExcelException("The maximum file limit is " + EXCEL_MAXIMUM);
         }
     }

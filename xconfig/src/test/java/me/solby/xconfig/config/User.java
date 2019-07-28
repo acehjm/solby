@@ -26,4 +26,12 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public User(String username, String phone) {
+        this.username = username;
+        this.phone = phone;
+    }
+
+    public User() {
+    }
 }
