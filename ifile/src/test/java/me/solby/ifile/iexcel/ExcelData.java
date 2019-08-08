@@ -8,7 +8,7 @@ import me.solby.ifile.iexcel.annotation.ExcelFileDesc;
  * @DESCRIPTION
  * @date 2018-12-02
  */
-@ExcelFileDesc(charset = "GB2312", ignoreRows = 1)
+@ExcelFileDesc(charset = "GB2312", skipLines = 1)
 public class ExcelData {
 
     @ExcelColumnDesc(title = "名称", order = 1)

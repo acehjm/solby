@@ -1,13 +1,17 @@
-package me.solby.ifile.iexcel.handler;
+package me.solby.ifile.iexcel.service.impl;
 
 import me.solby.ifile.iexcel.ExcelMetaInfo;
 import me.solby.ifile.iexcel.exception.ExcelException;
+import me.solby.ifile.iexcel.handler.CommonHandler;
+import me.solby.ifile.iexcel.service.ExcelWriter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 
 import javax.servlet.http.HttpServletResponse;
@@ -30,9 +34,7 @@ import static me.solby.ifile.iexcel.handler.CommonHandler.EXCEL_XSSF_SUFFIX;
  * 【2。待添加从导入开始行】
  * @date 2018-12-02
  */
-public class ExportHandler {
-
-    private static final Logger logger = LoggerFactory.getLogger(ExportHandler.class);
+public class ExcelWriterImpl implements ExcelWriter {
 
     /**
      * 写入浏览器输出流
@@ -45,9 +47,10 @@ public class ExportHandler {
      */
     public <T> void writeExcelRsp(List<T> dataList, Class<T> clz, boolean isXssf, String fileName,
                                   HttpServletResponse response) {
-        try (  //try 这种写法会自动关闭流
-               Workbook workbook = this.writeWorkbook(dataList, clz, isXssf);
-               OutputStream os = response.getOutputStream()
+        // try 这种写法会自动关闭流
+        try (
+                Workbook workbook = this.writeWorkbook(dataList, clz, isXssf);
+                OutputStream os = response.getOutputStream()
         ) {
             String suffix = isXssf ? EXCEL_XSSF_SUFFIX : EXCEL_HSSF_SUFFIX;  //生成后缀
             response.setContentType(MediaType.APPLICATION_OCTET_STREAM_VALUE);
@@ -138,7 +141,6 @@ public class ExportHandler {
                 value = field.get(t);  //获取属性值
             }
         } catch (Exception e) {  //异常
-            logger.error("Not found field");
             throw new ExcelException("Not found field");
         }
         return null == value ? StringUtils.EMPTY : String.valueOf(value);

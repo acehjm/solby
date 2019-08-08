@@ -1,12 +1,13 @@
-package me.solby.ifile;
+package me.solby.xoauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IfileApplication {
+public class XoauthApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(IfileApplication.class, args);
+        SpringApplication.run(XoauthApplication.class, args);
     }
+
 }

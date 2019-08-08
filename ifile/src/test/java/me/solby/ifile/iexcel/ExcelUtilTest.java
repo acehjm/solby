@@ -1,8 +1,10 @@
 package me.solby.ifile.iexcel;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import me.solby.ifile.iexcel.handler.ExportHandler;
-import me.solby.ifile.iexcel.handler.ImportHandler;
+import me.solby.ifile.iexcel.service.ExcelReader;
+import me.solby.ifile.iexcel.service.ExcelWriter;
+import me.solby.ifile.iexcel.service.impl.ExcelReaderImpl;
+import me.solby.ifile.iexcel.service.impl.ExcelWriterImpl;
 import me.solby.itool.json.JsonUtil;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +12,11 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +27,9 @@ import java.util.List;
  */
 public class ExcelUtilTest {
 
-    private ImportHandler importHandler = new ImportHandler();
+    private ExcelReader reader = new ExcelReaderImpl();
 
-    private ExportHandler exportHandler = new ExportHandler();
+    private ExcelWriter writer = new ExcelWriterImpl();
 
     private MultipartFile multipartFile;
 
@@ -41,7 +47,7 @@ public class ExcelUtilTest {
 
     @Test
     public void readExcelTest() {
-        List<ExcelData> list = importHandler.readExcel(multipartFile, new TypeReference<>() {
+        List<ExcelData> list = reader.readExcel(multipartFile, new TypeReference<>() {
         });
 
         System.out.println("list: " + JsonUtil.toJson(list));
@@ -63,6 +69,6 @@ public class ExcelUtilTest {
 
         String path = ResourceUtils.getURL("classpath:").getPath() + "export.xls";
         System.out.println("path: --> " + path);
-        exportHandler.writeExcelPath(path, list, ExcelData.class, false);
+        writer.writeExcelPath(path, list, ExcelData.class, false);
     }
 }

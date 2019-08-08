@@ -1,9 +1,11 @@
-package me.solby.ifile.iexcel.handler;
+package me.solby.ifile.iexcel.service.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import me.solby.ifile.iexcel.ExcelMetaInfo;
 import me.solby.ifile.iexcel.annotation.ExcelFileDesc;
 import me.solby.ifile.iexcel.exception.ExcelException;
+import me.solby.ifile.iexcel.handler.CommonHandler;
+import me.solby.ifile.iexcel.service.ExcelReader;
 import me.solby.itool.json.JsonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -37,9 +39,9 @@ import static me.solby.ifile.iexcel.handler.CommonHandler.EXCEL_XSSF_SUFFIX;
  * 【4。后期添加数据校验功能】
  * @date 2018-12-02
  */
-public class ImportHandler {
+public class ExcelReaderImpl implements ExcelReader {
 
-    private static final Logger logger = LoggerFactory.getLogger(ImportHandler.class);
+    private static final Logger logger = LoggerFactory.getLogger(ExcelReaderImpl.class);
 
     /**
      * 导入文件最大值
@@ -58,6 +60,7 @@ public class ImportHandler {
      * @param <T>           泛型，Excel数据类
      * @return
      */
+    @Override
     public <T> List<T> readExcel(MultipartFile multipartFile, TypeReference<T> type) {
         //校验文件的有效性
         this.checkFile(multipartFile);
@@ -71,11 +74,11 @@ public class ImportHandler {
         } catch (ClassNotFoundException e) {
             throw new ExcelException("Class not found", e);
         }
-        int ignoreRows = getIgnoreRows(tClass);  //Excel数据类注解，获取忽略行或开始行
+        int skipLines = getSkipLines(tClass);  //Excel数据类注解，获取忽略行或开始行
 
-        List<String[]> lines = this.getExcelDataList(workbook, ignoreRows);  //解析数据到集合中
+        List<String[]> lines = this.getExcelDataList(workbook, skipLines);  //解析数据到集合中
         for (String[] line : lines) {
-            T obj = this.buildPojo(line, type, CommonHandler.getExcelMetaList(tClass));  //生成Excel数据类
+            T obj = this.buildBean(line, type, CommonHandler.getExcelMetaList(tClass));  //生成Excel数据类
             if (null != obj) {
                 list.add(obj);  //添加到集合
             }
@@ -92,7 +95,7 @@ public class ImportHandler {
      * @param <T>   泛型，Excel数据类
      * @return
      */
-    private <T> T buildPojo(String[] lines, TypeReference<T> type, List<ExcelMetaInfo> infos) {
+    private <T> T buildBean(String[] lines, TypeReference<T> type, List<ExcelMetaInfo> infos) {
         if (lines != null && lines.length != 0 && infos != null && !infos.isEmpty()) { //判断参数是否有效
             Map<String, String> map = new HashMap<>(); //数据集合
             for (ExcelMetaInfo info : infos) {  //Excel元数据
@@ -157,8 +160,8 @@ public class ImportHandler {
      * @param <T> 泛型，Excel数据类
      * @return
      */
-    private <T> int getIgnoreRows(Class<T> clz) {
-        return clz.getAnnotation(ExcelFileDesc.class).ignoreRows();
+    private <T> int getSkipLines(Class<T> clz) {
+        return clz.getAnnotation(ExcelFileDesc.class).skipLines();
     }
 
     /**

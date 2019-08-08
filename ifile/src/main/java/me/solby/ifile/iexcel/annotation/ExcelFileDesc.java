@@ -20,6 +20,6 @@ public @interface ExcelFileDesc {
     /**
      * 忽略的行，也是数据开始行
      */
-    int ignoreRows() default 0;
+    int skipLines() default 0;
 
 }

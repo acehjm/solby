@@ -12,7 +12,7 @@ import java.util.List;
  * @DESCRIPTION Excel通用处理类
  * @date 2018-12-02
  */
-final class CommonHandler {
+public final class CommonHandler {
 
     private CommonHandler(){
     }
@@ -20,11 +20,11 @@ final class CommonHandler {
     /**
      * Excel后缀--hssf-2003及以下版本
      */
-    static final String EXCEL_HSSF_SUFFIX = ".xls";
+    public static final String EXCEL_HSSF_SUFFIX = ".xls";
     /**
      * Excel后缀--hssf-2007及以上版本
      */
-    static final String EXCEL_XSSF_SUFFIX = ".xlsx";
+    public static final String EXCEL_XSSF_SUFFIX = ".xlsx";
 
     /**
      * 获取Excel数据类注解信息
@@ -32,7 +32,7 @@ final class CommonHandler {
      * @param clz Excel数据类
      * @return
      */
-    static List<ExcelMetaInfo> getExcelMetaList(Class clz) {
+    public static List<ExcelMetaInfo> getExcelMetaList(Class clz) {
         List<ExcelMetaInfo> headers = new ArrayList<>();
         Field[] fields = clz.getDeclaredFields();  //获取所有已申明属性
         for (Field field : fields) {
