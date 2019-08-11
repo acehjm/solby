@@ -8,6 +8,6 @@ dependencies {
 
     implementation('com.opencsv:opencsv:4.4')
     implementation('commons-io:commons-io:2.6')
-    implementation('org.apache.poi:poi-ooxml:3.17')
+    implementation('org.apache.poi:poi-ooxml:4.1.0')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
