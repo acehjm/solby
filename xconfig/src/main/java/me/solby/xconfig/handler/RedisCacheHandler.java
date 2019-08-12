@@ -45,10 +45,12 @@ public class RedisCacheHandler {
      * 实现命令：expire 设置过期时间，单位秒
      *
      * @param key
+     * @param timeout
+     * @param unit
      * @return
      */
-    public void expire(String key, long timeout) {
-        redisTemplate.expire(key, timeout, TimeUnit.SECONDS);
+    public void expire(String key, long timeout, TimeUnit unit) {
+        redisTemplate.expire(key, timeout, unit);
     }
 
     /**
@@ -126,10 +128,11 @@ public class RedisCacheHandler {
      *
      * @param key
      * @param value
-     * @param timeout （以秒为单位）
+     * @param timeout
+     * @param unit
      */
-    public void set(String key, String value, long timeout) {
-        redisTemplate.opsForValue().set(key, value, timeout, TimeUnit.SECONDS);
+    public void set(String key, String value, long timeout, TimeUnit unit) {
+        redisTemplate.opsForValue().set(key, value, timeout, unit);
     }
 
     /**

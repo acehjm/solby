@@ -1,6 +1,7 @@
 package me.solby.xconfig.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import me.solby.itool.verify.ObjectUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
@@ -13,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
@@ -31,11 +32,13 @@ import static org.springframework.data.redis.cache.RedisCacheConfiguration.defau
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
-    /**
-     * 默认使用lettuce
-     */
-    @Autowired
-    private RedisConnectionFactory redisConnectionFactory;
+    @Value("${spring.application.name}")
+    private String applicationName;
+
+    @Bean
+    LettuceConnectionFactory lettuceConnectionFactory() {
+        return new LettuceConnectionFactory();
+    }
 
     /**
      * 自定义RedisTemplate，定义其序列化方式
@@ -43,14 +46,15 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return
      */
     @Bean
-    public RedisTemplate<String, String> redisTemplate() {
-        RedisTemplate<String, String> redis = new RedisTemplate<>();
-        redis.setConnectionFactory(redisConnectionFactory);
+    public <K, V> RedisTemplate<K, V> redisTemplate() {
+        RedisTemplate<K, V> redis = new RedisTemplate<>();
+        redis.setConnectionFactory(lettuceConnectionFactory());
 
         // 设置redis的String/Value的默认序列化方式
-        redis.setKeySerializer(new StringRedisSerializer());
+        redis.setKeySerializer(new KeyStringRedisSerializer());
         redis.setValueSerializer(new GenericJackson2JsonRedisSerializer());
-        redis.setHashKeySerializer(new StringRedisSerializer());
+
+        redis.setHashKeySerializer(new KeyStringRedisSerializer());
         redis.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
 
         redis.afterPropertiesSet();
@@ -66,17 +70,18 @@ public class RedisConfig extends CachingConfigurerSupport {
     @Override
     public CacheManager cacheManager() {
         RedisCacheConfiguration cacheConfiguration = defaultCacheConfig()
-                //排除掉null的缓存
+                // 排除掉null的缓存
                 .disableCachingNullValues()
+                .computePrefixWith((cacheName) -> this.getApplicationName().concat(":") + cacheName.concat(":"))
                 .serializeValuesWith(
-                        //配置序列化方式
-                        //主要是注解使用时
+                        // 配置序列化方式
+                        // 主要是注解使用时
                         RedisSerializationContext
                                 .SerializationPair
                                 .fromSerializer(new GenericJackson2JsonRedisSerializer())
                 );
-        //配置连接，并设置默认的缓存配置
-        return RedisCacheManager.builder(redisConnectionFactory).cacheDefaults(cacheConfiguration).build();
+        // 配置连接，并设置默认的缓存配置
+        return RedisCacheManager.builder(lettuceConnectionFactory()).cacheDefaults(cacheConfiguration).build();
     }
 
     /**
@@ -118,6 +123,24 @@ public class RedisConfig extends CachingConfigurerSupport {
             }
             return sb.toString();
         };
+    }
+
+    // ---------------------------------------------inner class
+
+    /**
+     * 获取应用名称
+     *
+     * @return
+     */
+    private String getApplicationName() {
+        return ObjectUtil.isEmpty(applicationName) ? "" : applicationName.toUpperCase();
+    }
+
+    private class KeyStringRedisSerializer extends StringRedisSerializer {
+        @Override
+        public byte[] serialize(String string) {
+            return super.serialize(getApplicationName().concat(":") + string);
+        }
     }
 
 }
