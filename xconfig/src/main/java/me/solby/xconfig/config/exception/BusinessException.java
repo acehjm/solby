@@ -1,4 +1,4 @@
-package me.solby.xboot.config.exception;
+package me.solby.xconfig.config.exception;
 
 import lombok.Getter;
 
