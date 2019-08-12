@@ -2,9 +2,13 @@ package me.solby.xboot.controller;
 
 import me.solby.itool.json.JsonUtil;
 import me.solby.itool.response.Result;
-import me.solby.xboot.config.exception.BaseError;
-import me.solby.xboot.config.exception.BusinessException;
+import me.solby.itool.verify.ObjectUtil;
 import me.solby.xboot.controller.vo.JsonDemoVO;
+import me.solby.xconfig.config.exception.BaseError;
+import me.solby.xconfig.config.exception.BusinessException;
+import me.solby.xconfig.handler.RedisCacheHandler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,6 +31,9 @@ import java.time.LocalDateTime;
 @RequestMapping("/json")
 public class JsonController {
 
+    @Autowired
+    private RedisCacheHandler redisCacheHandler;
+
     @GetMapping
     public Result<JsonDemoVO> getJson() {
         var jsonDemoVO = new JsonDemoVO();
@@ -37,6 +44,23 @@ public class JsonController {
         jsonDemoVO.setToday(LocalDate.now());
         jsonDemoVO.setNow(LocalDateTime.now());
         return new Result<>(jsonDemoVO);
+    }
+
+    @Cacheable(cacheNames = "kk", key = "#key")
+    @GetMapping("/cache")
+    public String getCache(@RequestParam String key) {
+        return "cached by: " + key;
+    }
+
+    @GetMapping("/cache/custom")
+    public String getCacheByCustom(@RequestParam String key) {
+        String ss = redisCacheHandler.get("kk::" + key);
+        if (ObjectUtil.isEmpty(ss)) {
+            redisCacheHandler.set("kk::" + key, "from redis cached");
+            return "not cached from redis";
+        } else {
+            return ss;
+        }
     }
 
     @GetMapping("/notfound/{aa}")
