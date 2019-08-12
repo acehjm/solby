@@ -2,7 +2,7 @@
 
 > Solby is a Spring boot-based scaffolding that has been combed out in the process of continuous improvement.
 
-![apache](http://jaywcjlove.github.io/sb/license/apache.svg)
+![apache](http://jaywcjlove.github.io/sb/license/apache.svg) ![passing](http://jaywcjlove.github.io/sb/build/passing.svg) ![follow](http://jaywcjlove.github.io/sb/github/green-alt-follow.svg) ![fork](http://jaywcjlove.github.io/sb/github/green-alt-fork.svg) ![star](http://jaywcjlove.github.io/sb/github/green-alt-star.svg)
 
 #### Project environment
 
