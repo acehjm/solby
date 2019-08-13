@@ -9,7 +9,7 @@
 - Development environment：[OpenJDK11](https://openjdk.java.net/projects/jdk/11)；
 - Build tool：[Gradle](https://gradle.org/)；
 - Development Framework：[Spring boot](https://spring.io/projects/spring-boot)，[mybatis-plus](https://github.com/baomidou/mybatis-plus), etc；
-- DB：[Redis](https://redis.io/)，[PostgreSQL](https://www.postgresql.org/)，[MySQL](https://www.mysql.com/)；
+- Database：[Redis](https://redis.io/)，[PostgreSQL](https://www.postgresql.org/)，[MySQL](https://www.mysql.com/)；
 
 ### Project module description
 
