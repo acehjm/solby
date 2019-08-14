@@ -8,7 +8,9 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @SpringBootApplication
 @ComponentScans({
-        @ComponentScan("me.solby.xconfig.*")
+        @ComponentScan("me.solby.xconfig.*"),
+        @ComponentScan("me.solby.xquartz.*"),
+        @ComponentScan("me.solby.xoauth.*"),
 })
 @EnableAspectJAutoProxy
 public class XbootApplication {

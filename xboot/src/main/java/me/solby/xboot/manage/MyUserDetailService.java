@@ -1,7 +1,7 @@
-package me.solby.xoauth.service;
+package me.solby.xboot.manage;
 
-import me.solby.xoauth.domain.UserDAO;
-import me.solby.xoauth.domain.entity.UserDO;
+import me.solby.xboot.domain.UserDAO;
+import me.solby.xboot.domain.entity.UserDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

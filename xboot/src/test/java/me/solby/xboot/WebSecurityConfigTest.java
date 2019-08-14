@@ -1,4 +1,4 @@
-package me.solby.xoauth;
+package me.solby.xboot;
 
 import me.solby.xtool.json.JsonUtil;
 import org.junit.Before;
@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -41,11 +42,10 @@ public class WebSecurityConfigTest {
 
     @Test
     public void whenUserHasAuth_ThenSuccess() throws IllegalStateException, URISyntaxException {
-        String token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.dG9rZW4.cy8URXnyVm2sgBIRtM5jJIOrVsCFsXCnM7NDnAkGpNP_uD4jkCvjJSxCzGvuS63xf21UGogwaBINFlSrz0jbnqfOuaKtRk7c1bWbPlgzoJVye6VW8Qx7bW_QP3115o9kWS6fC4T_bJ2ZAiMEffGAUIoGaw8ht6bMIA5WDm4xf08";
-//        ResponseEntity<String> response = restTemplate.getForEntity(base.toString() + "/test/success", String.class);
+        ResponseEntity<String> tokenRsp = restTemplate.getForEntity(base.toString() + "/auth/token", String.class);
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("Authentication", "Bearer " + token);
+        httpHeaders.add("Authentication", "Bearer " + tokenRsp.getBody());
 
         URI uri = new URI("http://localhost:" + port + "/test/success");
         RequestEntity entity = new RequestEntity(httpHeaders, HttpMethod.GET, uri);
@@ -53,34 +53,29 @@ public class WebSecurityConfigTest {
         ResponseEntity<String> response = restTemplate.exchange(entity, String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(response.getBody().contains("test"));
+        assertTrue(Objects.requireNonNull(response.getBody()).contains("test"));
     }
 
     @Test
     public void whenUserNoAuth_ThenFailure() throws IllegalStateException {
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(base.toString() + "/test/failure", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(base.toString() + "/test/failure", String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertTrue(response.getBody().contains("noauth"));
+        assertTrue(Objects.requireNonNull(response.getBody()).contains("noauth"));
     }
 
     @Test
     public void whenUserWithWrongCredentials_thenUnauthorizedPage() {
         restTemplate = new TestRestTemplate("user001", "wrongpassword");
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(base.toString(), String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(base.toString(), String.class);
 
         assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
-        assertTrue(response
-                .getBody()
-                .contains("Unauthorized"));
+        assertTrue(Objects.requireNonNull(response.getBody()).contains("Unauthorized"));
     }
 
     @Test
     public void testGetToken() {
-        ResponseEntity<String> response
-                = restTemplate.getForEntity(base.toString() + "/auth/token", String.class);
+        ResponseEntity<String> response = restTemplate.getForEntity(base.toString() + "/auth/token", String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         System.out.println(JsonUtil.toJson(response));

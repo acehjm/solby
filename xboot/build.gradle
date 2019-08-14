@@ -6,10 +6,12 @@ repositories {
 }
 
 dependencies {
-    implementation project(':xcommon:xtool')
-    implementation project(':xconfig')
-    implementation project(':xquartz')
+    implementation(project(':xcommon:xtool'))
+    implementation(project(':xconfig'))
+    implementation(project(':xquartz'))
+    implementation(project(':xoauth'))
 
+    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.boot:spring-boot-starter-actuator')
 
     implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9')

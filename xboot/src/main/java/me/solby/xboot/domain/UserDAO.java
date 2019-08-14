@@ -1,6 +1,6 @@
-package me.solby.xoauth.domain;
+package me.solby.xboot.domain;
 
-import me.solby.xoauth.domain.entity.UserDO;
+import me.solby.xboot.domain.entity.UserDO;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

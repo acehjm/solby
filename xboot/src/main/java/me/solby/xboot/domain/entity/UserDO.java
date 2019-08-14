@@ -1,4 +1,4 @@
-package me.solby.xoauth.domain.entity;
+package me.solby.xboot.domain.entity;
 
 import lombok.Data;
 

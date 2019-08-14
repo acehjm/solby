@@ -1,5 +1,6 @@
-package me.solby.xoauth.controller;
+package me.solby.xboot.controller;
 
+import me.solby.xtool.response.Result;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,14 +12,14 @@ public class TestController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/success")
-    public String test() {
-        return "test";
+    public Result<String> test() {
+        return new Result<>("test");
     }
 
     @PreAuthorize("hasAuthority('ADMIN_00')")
     @GetMapping("/failure")
-    public String noauth() {
-        return "noauth";
+    public Result<String> noauth() {
+        return new Result<>("noauth");
     }
 
 }
