@@ -6,7 +6,7 @@ repositories {
 }
 
 dependencies {
-    implementation project(':xcommon:itool')
+    implementation project(':xcommon:xtool')
     implementation project(':xconfig')
     implementation project(':xquartz')
 

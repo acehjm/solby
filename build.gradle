@@ -34,7 +34,7 @@ allprojects {
  */
 subprojects {
     // 子项目排除工具模块
-    if (project.name == 'xcommon:itool' || project.name == 'xcommon:ifile') {
+    if (project.name == 'xcommon:xtool' || project.name == 'xcommon:xfile') {
         return
     }
 

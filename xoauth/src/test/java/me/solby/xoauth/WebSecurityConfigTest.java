@@ -1,6 +1,6 @@
 package me.solby.xoauth;
 
-import me.solby.itool.json.JsonUtil;
+import me.solby.xtool.json.JsonUtil;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

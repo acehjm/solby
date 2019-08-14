@@ -1,7 +1,7 @@
 package me.solby.xconfig.config.exception;
 
-import me.solby.itool.response.Result;
-import me.solby.itool.verify.ObjectUtil;
+import me.solby.xtool.response.Result;
+import me.solby.xtool.verify.ObjectUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

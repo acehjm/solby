@@ -1,6 +1,6 @@
 package me.solby.xquartz.jobs;
 
-import me.solby.itool.json.JsonUtil;
+import me.solby.xtool.json.JsonUtil;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.springframework.stereotype.Component;

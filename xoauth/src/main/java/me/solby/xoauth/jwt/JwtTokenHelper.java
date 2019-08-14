@@ -1,16 +1,13 @@
 package me.solby.xoauth.jwt;
 
-import me.solby.itool.json.JsonUtil;
-import me.solby.itool.security.RSAUtil;
+import me.solby.xtool.json.JsonUtil;
+import me.solby.xtool.security.RSAUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.jwt.Jwt;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.jwt.crypto.sign.RsaSigner;
 import org.springframework.security.jwt.crypto.sign.RsaVerifier;
-
-import java.time.Instant;
-import java.util.Map;
 
 /**
  * JWT 工具类

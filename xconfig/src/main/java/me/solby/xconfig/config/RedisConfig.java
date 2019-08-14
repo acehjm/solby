@@ -1,6 +1,6 @@
 package me.solby.xconfig.config;
 
-import me.solby.itool.verify.ObjectUtil;
+import me.solby.xtool.verify.ObjectUtil;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;

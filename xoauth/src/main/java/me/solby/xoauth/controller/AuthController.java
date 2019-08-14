@@ -1,6 +1,6 @@
 package me.solby.xoauth.controller;
 
-import me.solby.itool.json.JsonUtil;
+import me.solby.xtool.json.JsonUtil;
 import me.solby.xoauth.domain.entity.UserDO;
 import me.solby.xoauth.jwt.JwtTokenHelper;
 import me.solby.xoauth.jwt.JwtUser;

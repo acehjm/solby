@@ -1,6 +1,6 @@
 package me.solby.xboot.controller;
 
-import me.solby.itool.response.Result;
+import me.solby.xtool.response.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
