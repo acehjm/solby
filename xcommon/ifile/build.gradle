@@ -4,7 +4,7 @@ repositories {
 
 
 dependencies {
-    implementation project(':itool')
+    implementation project(':xcommon:itool')
 
     implementation('com.opencsv:opencsv:4.4')
     implementation('commons-io:commons-io:2.6')
