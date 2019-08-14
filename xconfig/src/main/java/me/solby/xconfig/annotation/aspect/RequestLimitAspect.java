@@ -56,17 +56,16 @@ public class RequestLimitAspect {
 
         Integer remainCount = redisTemplate.boundValueOps(callLimitKey).get();
         if (null == remainCount) {
-            redisTemplate.boundValueOps(callLimitKey).set(callCount - 1, time, unit);
+            redisTemplate.boundValueOps(callLimitKey).set(callCount, time, unit);
         } else if (remainCount <= 0) {
             throw new BusinessException("接口调用已达上限");
-        } else {
-            remainCount = redisTemplate.boundValueOps(callLimitKey).get();
-            if (null != remainCount && remainCount > 0) {
-                redisTemplate.boundValueOps(callLimitKey).decrement();
-            }
-            logger.info("调用接口[{}],限制{}次/{}{}, 已调用{}次", servletRequest.getRequestURI(),
-                    callCount, time, unit.name(), callCount - (remainCount == null ? 0 : remainCount));
         }
+        remainCount = redisTemplate.boundValueOps(callLimitKey).get();
+        if (null != remainCount && remainCount > 0) {
+            redisTemplate.boundValueOps(callLimitKey).decrement();
+        }
+        logger.info("调用接口[{}],限制{}次/{}{}, 已调用{}次", servletRequest.getRequestURI(),
+                callCount, time, unit.name(), callCount - (remainCount == null ? 0 : remainCount - 1));
         return joinPoint.proceed();
     }
 
