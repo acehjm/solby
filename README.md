@@ -13,26 +13,40 @@
 
 ### Project module description
 
-#### **ifile**
+#### ***xcommon***
 
-   ifile is a file-related module, including import and export of excel and csv, file size, file hash, file suffix check, etc.
+#### ***xfile***
 
-#### **itool**
+File-related module, including import and export of excel and csv, file size, file hash, file suffix check, etc.
 
-   itool is a generic module with json parsing packages, security-related tool classes, tree operations, and generic validation.
-   
-#### **xoauth**
+#### ***xtool***
 
-   xoauth is an authorized login module that provides authorization and verification services for business modules.
+Generic module with json parsing packages, security-related tool classes, tree operations, and generic validation.
 
-#### **xquartz**
+#### ***xoauth***
 
-   xquratz is a timed task service based on java quzrtz.
-   
-#### **xconfig**
+Authorized login module that provides authorization and verification services for business modules.
 
-   xconfig is a service that includes configurations such as redis, thread pool, and related tools.
+#### ***xquartz***
 
-#### **xboot**
+Timed task service based on java quzrtz.
 
-   xboot is a service including webmvc, datasource, mybatis-plus, flyway, etc.
+#### ***xconfig***
+
+Configurations such as redis, thread pool, and related tools.
+
+#### ***xboot***
+
+Configurations with webmvc, datasource, mybatis-plus, flyway, etc. It is contain a main function, and has some test controller functions.
+
+### Usage
+
+*By IDEA:* In xboot, run a configuration with main class of `XbootApplication` using `Run` or `Debug` mode.
+
+*By Gradle:* with gradle, you can using `gradle bootRun` to boot application.
+
+*By Script:* <front color=red> @Will support soon@ </front>
+
+### Know Defect
+
+- OpenJDK11 unsupport lombok annotation such as `@Data`, etc.
