@@ -1,5 +1,6 @@
 package me.solby.xoauth.filter;
 
+import me.solby.xoauth.common.UserHolder;
 import me.solby.xoauth.jwt.JwtTokenHelper;
 import me.solby.xoauth.jwt.JwtUser;
 import org.slf4j.Logger;
@@ -51,6 +52,9 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             //将用户保存到SecurityContext
             SecurityContextHolder.getContext().setAuthentication(authentication);
             logger.info("用户 {} 通过授权校验", user.getUsername());
+
+            // 添加到全局
+            UserHolder.userThreadLocal.set(user);
         }
         filterChain.doFilter(request, response);
     }
