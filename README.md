@@ -49,4 +49,4 @@ Configurations with webmvc, datasource, mybatis-plus, flyway, etc. It is contain
 
 ### Know Defect
 
-- OpenJDK11 unsupport lombok annotation such as `@Data`, etc.
+- Gradle5 unsupport lombok annotation such as `@Data`, etc.
