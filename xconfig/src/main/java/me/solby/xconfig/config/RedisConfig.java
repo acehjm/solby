@@ -133,7 +133,7 @@ public class RedisConfig extends CachingConfigurerSupport {
      * @return
      */
     private String getApplicationName() {
-        return ObjectUtil.isEmpty(applicationName) ? "" : applicationName.toUpperCase();
+        return ObjectUtil.isEmpty(applicationName) ? "" : applicationName;
     }
 
     private class KeyStringRedisSerializer extends StringRedisSerializer {
