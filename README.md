@@ -13,29 +13,29 @@
 
 ### Project module description
 
-#### ***xcommon***
+***xcommon***
 
-#### ***xfile***
+***xfile*** 
 
 File-related module, including import and export of excel and csv, file size, file hash, file suffix check, etc.
 
-#### ***xtool***
+***xtool***
 
 Generic module with json parsing packages, security-related tool classes, tree operations, and generic validation.
 
-#### ***xoauth***
+***xoauth***
 
 Authorized login module that provides authorization and verification services for business modules.
 
-#### ***xquartz***
+***xquartz***
 
 Timed task service based on java quzrtz.
 
-#### ***xconfig***
+***xconfig***
 
 Configurations such as redis, thread pool, and related tools.
 
-#### ***xboot***
+***xboot***
 
 Configurations with webmvc, datasource, mybatis-plus, flyway, etc. It is contain a main function, and has some test controller functions.
 
@@ -45,7 +45,7 @@ Configurations with webmvc, datasource, mybatis-plus, flyway, etc. It is contain
 
 *By Gradle:* with gradle, you can using `gradle bootRun` to boot application.
 
-*By Script:* <front color=red> @Will support soon@ </front>
+*By Script:*  ~~@Will support soon@~~
 
 ### Know Defect
 
