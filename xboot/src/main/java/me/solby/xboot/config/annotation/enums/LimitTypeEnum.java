@@ -1,4 +1,4 @@
-package me.solby.xconfig.annotation.enums;
+package me.solby.xboot.config.annotation.enums;
 
 /**
  * me.solby.xboot.config.annotation.impl
@@ -14,19 +14,9 @@ public enum LimitTypeEnum {
     INTERFACE,
 
     /**
-     * 账号
-     */
-    ACCOUNT,
-
-    /**
      * 账户接口
      */
     ACCOUNT_INTERFACE,
-
-    /**
-     * IP
-     */
-    IP,
     ;
 
 }

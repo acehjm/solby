@@ -1,7 +1,10 @@
-package me.solby.xconfig.annotation.aspect;
+package me.solby.xboot.config.annotation.aspect;
 
-import me.solby.xconfig.annotation.RequestLimit;
+import me.solby.xboot.config.annotation.RequestLimit;
+import me.solby.xboot.config.annotation.enums.LimitTypeEnum;
 import me.solby.xconfig.config.exception.BusinessException;
+import me.solby.xoauth.common.UserHolder;
+import me.solby.xoauth.jwt.JwtUser;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
@@ -32,7 +36,7 @@ public class RequestLimitAspect {
      */
     private static final String CALL_FREQUENCY_LIMIT_KEY = "CALL_FREQUENCY_LIMIT:";
 
-    @Autowired
+    @Resource
     private RedisTemplate<String, Integer> redisTemplate;
     @Autowired
     private HttpServletRequest servletRequest;
@@ -49,10 +53,24 @@ public class RequestLimitAspect {
      */
     @Around(value = "aspectRequest(requestLimit)", argNames = "joinPoint,requestLimit")
     public Object callBefore(ProceedingJoinPoint joinPoint, RequestLimit requestLimit) throws Throwable {
-        String callLimitKey = CALL_FREQUENCY_LIMIT_KEY + servletRequest.getRequestURI();
         int callCount = requestLimit.count();
         int time = requestLimit.time();
         TimeUnit unit = requestLimit.unit();
+        LimitTypeEnum typeEnum = requestLimit.type();
+
+        JwtUser user = UserHolder.userThreadLocal.get();
+
+        String callLimitKey = CALL_FREQUENCY_LIMIT_KEY + servletRequest.getRequestURI();
+        switch (typeEnum) {
+            case ACCOUNT_INTERFACE:
+                callLimitKey = callLimitKey + ":" + user.getUsername();
+                break;
+            case INTERFACE:
+                // default callLimitKey
+                break;
+            default:
+                break;
+        }
 
         Integer remainCount = redisTemplate.boundValueOps(callLimitKey).get();
         if (null == remainCount) {
@@ -64,7 +82,7 @@ public class RequestLimitAspect {
         if (null != remainCount && remainCount > 0) {
             redisTemplate.boundValueOps(callLimitKey).decrement();
         }
-        logger.info("调用接口[{}],限制{}次/{}{}, 已调用{}次", servletRequest.getRequestURI(),
+        logger.info("[{}]调用接口[{}],限制{}次/{}{}, 已调用{}次", user.getUsername(), servletRequest.getRequestURI(),
                 callCount, time, unit.name(), callCount - (remainCount == null ? 0 : remainCount - 1));
         return joinPoint.proceed();
     }

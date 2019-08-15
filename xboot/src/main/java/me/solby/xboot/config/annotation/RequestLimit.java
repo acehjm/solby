@@ -1,6 +1,6 @@
-package me.solby.xconfig.annotation;
+package me.solby.xboot.config.annotation;
 
-import me.solby.xconfig.annotation.enums.LimitTypeEnum;
+import me.solby.xboot.config.annotation.enums.LimitTypeEnum;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 
