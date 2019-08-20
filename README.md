@@ -45,7 +45,7 @@ Configurations with webmvc, datasource, mybatis-plus, flyway, etc. It is contain
 
 *By Gradle:* with gradle, you can using `gradle bootRun` to boot application.
 
-*By Script:*  ~~@Will support soon@~~
+*By Script:*  find script from `/bin`, and usage with `./xxx.sh [APP_NAME] [start|stop|restart|status]`.
 
 ### Know Defect
 
