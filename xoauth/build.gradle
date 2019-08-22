@@ -15,14 +15,3 @@ dependencies {
 
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
-
-configurations {
-    deployerJars
-
-    /**
-     * 所有需要忽略的包定义在此
-     */
-//  all*.exclude group: 'commons-httpclient'
-//  all*.exclude group: 'commons-logging'
-//  all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
-}
