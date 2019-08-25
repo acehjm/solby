@@ -14,13 +14,13 @@ public class I18NUtil {
     }
 
     /**
-     * 获取国际化参数
+     * 获取国际化消息
      *
      * @param code 消息KEY
      * @return
      */
     public static String getMessage(String code) {
-        return getMessage(code, null);
+        return getMessage(code, null, null);
     }
 
     /**
@@ -32,6 +32,17 @@ public class I18NUtil {
      */
     public static String getMessage(String code, Object[] args) {
         return getMessage(code, args, null);
+    }
+
+    /**
+     * 获取国际化消息
+     *
+     * @param code   消息KEY
+     * @param locale 语言
+     * @return
+     */
+    public static String getMessage(String code, Locale locale) {
+        return getMessage(code, null, locale);
     }
 
     /**
