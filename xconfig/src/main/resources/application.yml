@@ -16,6 +16,9 @@ spring:
       shutdown-timeout: 100ms
     port: 6379
     password:             # Redis服务器连接密码（默认为空）
+  # 国际化文件路径配置
+  messages:
+    basename: classpath:resources/message,classpath:resources/lanaguage
 
 # custom thread pool configuration
 thread:
