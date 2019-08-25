@@ -1,8 +1,9 @@
 package me.solby.xoauth.filter;
 
-import me.solby.xoauth.common.UserHolder;
+import me.solby.xoauth.common.UserSessionHolder;
 import me.solby.xoauth.jwt.JwtTokenHelper;
 import me.solby.xoauth.jwt.JwtUser;
+import me.solby.xtool.constant.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,7 +55,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             logger.info("用户 {} 通过授权校验", user.getUsername());
 
             // 添加到全局
-            UserHolder.userThreadLocal.set(user);
+            UserSessionHolder.userSessionThreadLocal.set(this.getUserSession(user));
         }
         filterChain.doFilter(request, response);
     }
@@ -75,5 +76,18 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             return accessToken;
         }
         return null;
+    }
+
+    /**
+     * 获取用户会话
+     *
+     * @param user
+     * @return
+     */
+    private UserSession getUserSession(JwtUser user) {
+        UserSession userSession = new UserSession();
+        userSession.setUserid(user.getUserid());
+        userSession.setUsername(user.getUsername());
+        return userSession;
     }
 }
