@@ -10,14 +10,17 @@ import java.util.Locale;
  */
 public class I18NUtil {
 
+    private I18NUtil() {
+    }
+
     /**
      * 获取国际化参数
      *
      * @param code 消息KEY
      * @return
      */
-    private String getMessage(String code) {
-        return this.getMessage(code, null);
+    public static String getMessage(String code) {
+        return getMessage(code, null);
     }
 
     /**
@@ -27,8 +30,8 @@ public class I18NUtil {
      * @param args 消息参数
      * @return
      */
-    private String getMessage(String code, Object[] args) {
-        return this.getMessage(code, args, null);
+    public static String getMessage(String code, Object[] args) {
+        return getMessage(code, args, null);
     }
 
     /**
@@ -39,7 +42,7 @@ public class I18NUtil {
      * @param locale 语言
      * @return
      */
-    private String getMessage(String code, Object[] args, Locale locale) {
+    public static String getMessage(String code, Object[] args, Locale locale) {
         return AppContext.getApplicationContext().getMessage(code, args, locale);
     }
 
