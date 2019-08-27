@@ -24,6 +24,11 @@ spring:
     baseline-on-migrate: true
     table: schema_version
 
+  # 国际化文件路径配置
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    fallbackToSystemLocale: false
 
 # mybatis-plus
 mybatis-plus:
@@ -43,10 +48,10 @@ mybatis-plus:
     #      table-prefix: t_
     banner: false
     # 是否缓存SQL解析
-#    sql-parser-cache: true
+  #    sql-parser-cache: true
   configuration:
     map-underscore-to-camel-case: true
-   # 执行器类型，simple=每个sql都有一个执行器，reuse=复用执行器
+    # 执行器类型，simple=每个sql都有一个执行器，reuse=复用执行器
 #    default-executor-type: reuse
 
 # management configuration
