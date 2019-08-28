@@ -16,45 +16,46 @@ public class I18NUtil {
     /**
      * 获取国际化消息
      *
-     * @param code 消息KEY
+     * @param key 消息KEY
      * @return
      */
-    public static String getMessage(String code) {
-        return getMessage(code, null, null);
+    public static String getMessage(String key) {
+        return getMessage(key, null, Locale.getDefault());
     }
 
     /**
      * 获取国际化消息
      *
-     * @param code 消息KEY
+     * @param key  消息KEY
      * @param args 消息参数
      * @return
      */
-    public static String getMessage(String code, Object[] args) {
-        return getMessage(code, args, null);
+    public static String getMessage(String key, Object[] args) {
+        return getMessage(key, args, Locale.getDefault());
     }
 
     /**
      * 获取国际化消息
      *
-     * @param code   消息KEY
+     * @param key    消息KEY
      * @param locale 语言
      * @return
      */
-    public static String getMessage(String code, Locale locale) {
-        return getMessage(code, null, locale);
+    public static String getMessage(String key, Locale locale) {
+        return getMessage(key, null, locale);
     }
 
     /**
      * 获取国际化消息
      *
-     * @param code   消息KEY
+     * @param key    消息KEY
      * @param args   消息参数
      * @param locale 语言
      * @return
      */
-    public static String getMessage(String code, Object[] args, Locale locale) {
-        return AppContext.getApplicationContext().getMessage(code, args, locale);
+    private static String getMessage(String key, Object[] args, Locale locale) {
+        // if not found, the default message is key
+        return AppContext.getApplicationContext().getMessage(key, args, key, locale);
     }
 
 }
