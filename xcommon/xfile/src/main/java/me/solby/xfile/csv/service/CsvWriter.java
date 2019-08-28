@@ -25,8 +25,7 @@ public interface CsvWriter {
     <T> void write(List<T> data, String fileName, Class<T> type, HttpServletResponse response);
 
     /**
-     * 写入到输出流
-     * 备注：默认以流的方式写入response，浏览器直接下载，可自定义Header覆盖
+     * 写入到字节输出流
      *
      * @param data     数据集
      * @param fileName 文件名
