@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  me.solby.xconfig.config.RedisConfig,\
+  me.solby.xconfig.config.ThreadPoolConfig

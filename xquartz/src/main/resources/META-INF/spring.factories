@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  me.solby.xquartz.config.QuartzConfig,\
+  me.solby.xquartz.service.impl.QuartzServiceImpl
