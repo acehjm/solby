@@ -7,9 +7,6 @@ apply plugin: 'java'
 group 'me.solby'
 version '0.0.2-SNAPSHOT'
 
-sourceCompatibility = 11
-targetCompatibility = 11
-
 repositories {
     mavenCentral()
 }
