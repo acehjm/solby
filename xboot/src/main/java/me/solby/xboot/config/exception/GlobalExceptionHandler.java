@@ -1,6 +1,6 @@
-package me.solby.xconfig.config.exception;
+package me.solby.xboot.config.exception;
 
-import me.solby.xconfig.manage.ResponseHolder;
+import me.solby.xboot.manage.ResponseHolder;
 import me.solby.xtool.response.Result;
 import me.solby.xtool.verify.ObjectUtil;
 import org.springframework.http.HttpHeaders;

@@ -1,4 +1,4 @@
-package me.solby.xconfig.handler;
+package me.solby.xboot.domain.repository.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @date 2019-06-05
  */
 @Component
-public class RedisCacheHandler {
+public class RedisCacheRepository {
 
     @Autowired
     private StringRedisTemplate redisTemplate;

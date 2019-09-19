@@ -1,6 +1,6 @@
 package me.solby.xboot.controller;
 
-import me.solby.xboot.domain.UserDAO;
+import me.solby.xboot.domain.repository.UserRepository;
 import me.solby.xtool.json.JsonUtil;
 import me.solby.xboot.domain.entity.UserDO;
 import me.solby.xoauth.jwt.JwtTokenHelper;
@@ -28,7 +28,7 @@ import java.util.List;
 public class AuthController {
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @PostMapping("/login")
     public Result<String> login(@RequestBody UserDO userDO) {
@@ -38,7 +38,7 @@ public class AuthController {
 
     @GetMapping("/token")
     public Result<String> token(@RequestParam String username) {
-        UserDO userDO = userDAO.findByUserName(username);
+        UserDO userDO = userRepository.findByUserName(username);
 
         JwtUser jwtUser = new JwtUser(userDO.getUserName(), userDO.getUserId(), List.of("ADMIN", "USER", "GUEST"));
         String token = JwtTokenHelper.token(JsonUtil.toJson(jwtUser));

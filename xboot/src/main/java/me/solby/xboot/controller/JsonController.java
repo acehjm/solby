@@ -1,9 +1,9 @@
 package me.solby.xboot.controller;
 
 import me.solby.xboot.controller.vo.JsonDemoVO;
-import me.solby.xconfig.config.exception.BaseError;
-import me.solby.xconfig.config.exception.BusinessException;
-import me.solby.xconfig.handler.RedisCacheHandler;
+import me.solby.xboot.config.exception.BaseError;
+import me.solby.xboot.config.exception.BusinessException;
+import me.solby.xboot.domain.repository.redis.RedisCacheRepository;
 import me.solby.xtool.json.JsonUtil;
 import me.solby.xtool.response.Result;
 import me.solby.xtool.verify.ObjectUtil;
@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
 public class JsonController {
 
     @Autowired
-    private RedisCacheHandler redisCacheHandler;
+    private RedisCacheRepository redisCacheRepository;
 
     @GetMapping
     public Result<JsonDemoVO> getJson() {
@@ -54,9 +54,9 @@ public class JsonController {
 
     @GetMapping("/cache/custom")
     public String getCacheByCustom(@RequestParam String key) {
-        String ss = redisCacheHandler.get("kk::" + key);
+        String ss = redisCacheRepository.get("kk::" + key);
         if (ObjectUtil.isEmpty(ss)) {
-            redisCacheHandler.set("kk::" + key, "from redis cached");
+            redisCacheRepository.set("kk::" + key, "from redis cached");
             return "not cached from redis";
         } else {
             return ss;
@@ -71,7 +71,7 @@ public class JsonController {
     @PostMapping
     public Result postJson(@RequestBody JsonDemoVO demoVO) {
         System.out.println(JsonUtil.toJson(demoVO));
-        if (true) {
+        if (demoVO.getItem().equals("aa")) {
             throw new BusinessException("xxxxx");
         }
         throw new BusinessException(new BaseError() {

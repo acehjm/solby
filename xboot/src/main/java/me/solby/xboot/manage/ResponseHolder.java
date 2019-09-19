@@ -1,4 +1,4 @@
-package me.solby.xconfig.manage;
+package me.solby.xboot.manage;
 
 import me.solby.xtool.response.Result;
 
@@ -45,6 +45,15 @@ public class ResponseHolder {
     public static String i18nWithFormat(String code, Object[] args) {
         String key = String.format(I18N_CODE_FORMAT, codeWithFormat(code));
         return I18NUtil.getMessage(key, args);
+    }
+
+    /**
+     * 获取错误码前缀
+     *
+     * @return prefix
+     */
+    public static String getCodePrefix() {
+        return ResponseHolder.CODE_PREFIX;
     }
 
     /**

@@ -1,9 +1,9 @@
-package me.solby.xconfig.manage;
+package me.solby.xboot.manage;
 
 import java.util.Locale;
 
 /**
- * me.solby.xconfig.manage
+ * 国际化工具类
  *
  * @author majhdk
  * @date 2019-08-26

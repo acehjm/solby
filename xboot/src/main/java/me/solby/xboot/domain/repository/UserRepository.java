@@ -1,4 +1,4 @@
-package me.solby.xboot.domain;
+package me.solby.xboot.domain.repository;
 
 import me.solby.xboot.domain.entity.UserDO;
 import org.springframework.stereotype.Repository;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDAO {
+public class UserRepository {
 
     private List<UserDO> users = List.of(
             new UserDO("001", "user001", "001"),

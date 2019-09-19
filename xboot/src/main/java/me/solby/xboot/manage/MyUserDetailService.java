@@ -1,6 +1,6 @@
 package me.solby.xboot.manage;
 
-import me.solby.xboot.domain.UserDAO;
+import me.solby.xboot.domain.repository.UserRepository;
 import me.solby.xboot.domain.entity.UserDO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,12 +33,12 @@ public class MyUserDetailService implements UserDetailsService {
     private static final Logger logger = LoggerFactory.getLogger(MyUserDetailService.class);
 
     @Autowired
-    private UserDAO userDAO;
+    private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         logger.info("用户 {} 进入认证阶段", username);
-        UserDO userDO = userDAO.findByUserName(username);
+        UserDO userDO = userRepository.findByUserName(username);
 
         if (ObjectUtils.isEmpty(userDO)) {
             logger.warn("用户 {} 不存在", username);

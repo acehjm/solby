@@ -1,4 +1,4 @@
-package me.solby.xconfig.manage;
+package me.solby.xboot.manage;
 
 import org.apache.catalina.connector.Connector;
 import org.slf4j.Logger;

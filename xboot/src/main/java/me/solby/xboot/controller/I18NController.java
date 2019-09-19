@@ -1,7 +1,7 @@
 package me.solby.xboot.controller;
 
-import me.solby.xconfig.config.exception.BusinessException;
-import me.solby.xconfig.manage.I18NUtil;
+import me.solby.xboot.config.exception.BusinessException;
+import me.solby.xboot.manage.I18NUtil;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
