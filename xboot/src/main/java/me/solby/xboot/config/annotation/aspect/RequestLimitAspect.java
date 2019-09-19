@@ -2,7 +2,7 @@ package me.solby.xboot.config.annotation.aspect;
 
 import me.solby.xboot.config.annotation.RequestLimit;
 import me.solby.xboot.config.annotation.enums.LimitTypeEnum;
-import me.solby.xconfig.config.exception.BusinessException;
+import me.solby.xboot.config.exception.BusinessException;
 import me.solby.xoauth.common.UserSessionHolder;
 import me.solby.xtool.constant.UserSession;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -76,7 +76,7 @@ public class RequestLimitAspect {
         if (null == remainCount) {
             redisTemplate.boundValueOps(callLimitKey).set(callCount, time, unit);
         } else if (remainCount <= 0) {
-            throw new BusinessException("接口调用已达上限");
+            throw new BusinessException("limit", "接口调用已达上限");
         }
         remainCount = redisTemplate.boundValueOps(callLimitKey).get();
         if (null != remainCount && remainCount > 0) {
