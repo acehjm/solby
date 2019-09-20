@@ -4,7 +4,7 @@
 
 ![apache](http://jaywcjlove.github.io/sb/license/apache.svg)     ![passing](http://jaywcjlove.github.io/sb/build/passing.svg)   [![follow](http://jaywcjlove.github.io/sb/github/w-follow.svg)](https://github.com/acehjm/solby/blob/master/README.md)      [![fork](http://jaywcjlove.github.io/sb/github/w-fork.svg)](https://github.com/acehjm/solby/blob/master/README.md)    [![star](http://jaywcjlove.github.io/sb/github/w-star.svg)](https://github.com/acehjm/solby/blob/master/README.md)
 
-[English]() | 中文文档
+[English](https://github.com/acehjm/solby) | 中文文档
 
 ### 项目环境
 
