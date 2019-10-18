@@ -1,7 +1,7 @@
 package me.solby.xboot.controller;
 
-import me.solby.xboot.config.annotation.RequestLimit;
-import me.solby.xboot.config.annotation.enums.LimitTypeEnum;
+import me.solby.xboot.tookit.annotation.RequestLimit;
+import me.solby.xboot.tookit.enums.LimitTypeEnum;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

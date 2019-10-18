@@ -1,4 +1,4 @@
-package me.solby.xboot.config.annotation.enums;
+package me.solby.xboot.tookit.enums;
 
 /**
  * me.solby.xboot.config.annotation.impl

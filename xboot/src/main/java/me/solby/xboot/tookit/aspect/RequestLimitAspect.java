@@ -1,7 +1,7 @@
-package me.solby.xboot.config.annotation.aspect;
+package me.solby.xboot.tookit.aspect;
 
-import me.solby.xboot.config.annotation.RequestLimit;
-import me.solby.xboot.config.annotation.enums.LimitTypeEnum;
+import me.solby.xboot.tookit.annotation.RequestLimit;
+import me.solby.xboot.tookit.enums.LimitTypeEnum;
 import me.solby.xboot.config.exception.BusinessException;
 import me.solby.xoauth.common.UserSessionHolder;
 import me.solby.xtool.constant.UserSession;
