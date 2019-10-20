@@ -3,6 +3,7 @@ package me.solby.xtool.security;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 /**
  * JDK MessageDigest 实现
@@ -23,7 +24,7 @@ public class SHAUtil {
      */
     public static String sha256HexBase64(final String data) {
         byte[] bytes = sha256Hex(data.getBytes(StandardCharsets.UTF_8));
-        return new String(Base64Codec.encode(bytes), StandardCharsets.UTF_8);
+        return new String(Base64.getEncoder().encode(bytes), StandardCharsets.UTF_8);
     }
 
     /**
@@ -68,7 +69,7 @@ public class SHAUtil {
      */
     public static String shaAlgorithmHexBase64(final String data, final String algorithm) {
         byte[] bytes = shaAlgorithmHex(data.getBytes(StandardCharsets.UTF_8), algorithm);
-        return new String(Base64Codec.encode(bytes), StandardCharsets.UTF_8);
+        return new String(Base64.getEncoder().encode(bytes), StandardCharsets.UTF_8);
     }
 
     /**
