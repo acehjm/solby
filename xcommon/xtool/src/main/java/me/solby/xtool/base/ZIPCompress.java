@@ -63,9 +63,9 @@ public class ZIPCompress {
             return new String(out.toByteArray());
         } catch (IOException e) {
             e.printStackTrace();
-            // 返回原来的字符串
-            return compressed;
         }
+        // 返回原来的字符串
+        return compressed;
     }
 
 }

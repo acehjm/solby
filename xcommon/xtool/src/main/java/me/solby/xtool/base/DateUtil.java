@@ -44,8 +44,8 @@ public class DateUtil {
      * 英文日期的几种格式
      */
     private static final Collection<String> DEFAULT_PATTERNS = Arrays
-            .asList(new String[]{"EEE MMM d HH:mm:ss yyyy", "EEE MMM dd HH:mm:ss Z yyyy", "EEE MMM dd Z yyyy",
-                    "EEE MMM dd yyyy", "EEEE, dd-MMM-yy HH:mm:ss zzz", "EEE, dd MMM yyyy HH:mm:ss zzz"});
+            .asList("EEE MMM d HH:mm:ss yyyy", "EEE MMM dd HH:mm:ss Z yyyy", "EEE MMM dd Z yyyy",
+                    "EEE MMM dd yyyy", "EEEE, dd-MMM-yy HH:mm:ss zzz", "EEE, dd MMM yyyy HH:mm:ss zzz");
 
     /**
      * @param data
@@ -506,7 +506,7 @@ public class DateUtil {
         /**
          * 日期时间(日期点号分割)
          */
-        public final static String DATATIME_DOT = "yyyy.MM.dd HH:mm:ss";
+        public final static String DATA_TIME_DOT = "yyyy.MM.dd HH:mm:ss";
 
         /**
          * 日期时间(日期反斜杠)
