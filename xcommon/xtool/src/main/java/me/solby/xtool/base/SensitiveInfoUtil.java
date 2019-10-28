@@ -7,7 +7,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +18,8 @@ import java.util.Set;
  * @date 2019/10/19
  */
 public class SensitiveInfoUtil {
-    private SensitiveInfoUtil(){}
+    private SensitiveInfoUtil() {
+    }
 
     /**
      * [中文姓名] 只显示第一个汉字，其他隐藏为2个星号<例子：李**>
@@ -92,7 +92,7 @@ public class SensitiveInfoUtil {
     }
 
     /**
-     * [地址] 只显示到地区，不显示详细地址；我们要对个人信息增强保护<例子：北京市海淀区****>
+     * [地址] 只显示到地区，不显示详细地址；<例子：北京市海淀区****>
      *
      * @param address
      * @param sensitiveSize 敏感信息长度
@@ -158,86 +158,99 @@ public class SensitiveInfoUtil {
         return fileds;
     }
 
+    public static void replace(Class<?> clazz) {
+
+
+
+    }
+
     // TODO MODIFY
     private static void replace(Field[] fields, Object javaBean, Set<Integer> referenceCounter)
             throws IllegalArgumentException, IllegalAccessException {
-        if (null != fields && fields.length > 0) {
-            for (Field field : fields) {
-                field.setAccessible(true);
-                if (null != javaBean) {
-                    Object value = field.get(javaBean);
-                    if (null != value) {
-                        Class<?> type = value.getClass();
-                        // 1.处理子属性，包括集合中的
-                        if (type.isArray()) {
-                            int len = Array.getLength(value);
-                            for (int i = 0; i < len; i++) {
-                                Object arrayObject = Array.get(value, i);
-                                SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(arrayObject.getClass()), arrayObject, referenceCounter);
-                            }
-                        } else if (value instanceof Collection<?>) {
-                            Collection<?> c = (Collection<?>) value;
-                            for (Object collectionObj : c) {
-                                SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(collectionObj.getClass()), collectionObj, referenceCounter);
-                            }
-                        } else if (value instanceof Map<?, ?>) {
-                            Map<?, ?> m = (Map<?, ?>) value;
-                            Set<?> set = m.entrySet();
-                            for (Object o : set) {
-                                Map.Entry<?, ?> entry = (Map.Entry<?, ?>) o;
-                                Object mapVal = entry.getValue();
-                                SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(mapVal.getClass()), mapVal, referenceCounter);
-                            }
-                        } else if (!type.isPrimitive()
-                                && !StringUtils.startsWith(type.getPackage().getName(), "javax.")
-                                && !StringUtils.startsWith(type.getPackage().getName(), "java.")
-                                && !StringUtils.startsWith(field.getType().getName(), "javax.")
-                                && !StringUtils.startsWith(field.getName(), "java.")
-                                && referenceCounter.add(value.hashCode())) {
-                            SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(type), value, referenceCounter);
-                        }
-                    }
-                    // 2. 处理自身的属性
-                    SensitiveInfo annotation = field.getAnnotation(SensitiveInfo.class);
-                    if (field.getType().equals(String.class) && null != annotation) {
-                        String valueStr = (String) value;
-                        if (StringUtils.isNotBlank(valueStr)) {
-                            switch (annotation.type()) {
-                                case CHINESE_NAME: {
-                                    field.set(javaBean, SensitiveInfoUtil.chineseName(valueStr));
-                                    break;
-                                }
-                                case ID_CARD: {
-                                    field.set(javaBean, SensitiveInfoUtil.idCardNum(valueStr));
-                                    break;
-                                }
-                                case FIXED_PHONE: {
-                                    field.set(javaBean, SensitiveInfoUtil.fixedPhone(valueStr));
-                                    break;
-                                }
-                                case MOBILE_PHONE: {
-                                    field.set(javaBean, SensitiveInfoUtil.mobilePhone(valueStr));
-                                    break;
-                                }
-                                case ADDRESS: {
-                                    field.set(javaBean, SensitiveInfoUtil.address(valueStr, 4));
-                                    break;
-                                }
-                                case EMAIL: {
-                                    field.set(javaBean, SensitiveInfoUtil.email(valueStr));
-                                    break;
-                                }
-                                case BANK_CARD: {
-                                    field.set(javaBean, SensitiveInfoUtil.bankCard(valueStr));
-                                    break;
-                                }
-                                case CNAPS_CODE: {
-                                    field.set(javaBean, SensitiveInfoUtil.cnapsCode(valueStr));
-                                    break;
-                                }
-                            }
-                        }
-                    }
+        if (null == fields || fields.length <= 0) {
+            return;
+        }
+
+        for (Field field : fields) {
+            field.setAccessible(true);
+            if (null == javaBean) {
+                break;
+            }
+
+            Object value = field.get(javaBean);
+            if (null == value) {
+                return;
+            }
+
+            Class<?> type = value.getClass();
+            // 1.处理子属性，包括集合中的
+            if (type.isArray()) {
+                int len = Array.getLength(value);
+                for (int i = 0; i < len; i++) {
+                    Object arrayObject = Array.get(value, i);
+                    SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(arrayObject.getClass()), arrayObject, referenceCounter);
+                }
+            } else if (value instanceof Collection<?>) {
+                Collection<?> c = (Collection<?>) value;
+                for (Object collectionObj : c) {
+                    SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(collectionObj.getClass()), collectionObj, referenceCounter);
+                }
+            } else if (value instanceof Map<?, ?>) {
+                Map<?, ?> m = (Map<?, ?>) value;
+                Set<?> set = m.entrySet();
+                for (Object o : set) {
+                    Map.Entry<?, ?> entry = (Map.Entry<?, ?>) o;
+                    Object mapVal = entry.getValue();
+                    SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(mapVal.getClass()), mapVal, referenceCounter);
+                }
+            } else if (!type.isPrimitive()
+                    && !StringUtils.startsWith(type.getPackage().getName(), "javax.")
+                    && !StringUtils.startsWith(type.getPackage().getName(), "java.")
+                    && !StringUtils.startsWith(field.getType().getName(), "javax.")
+                    && !StringUtils.startsWith(field.getName(), "java.")
+                    && referenceCounter.add(value.hashCode())) {
+                SensitiveInfoUtil.replace(SensitiveInfoUtil.findAllField(type), value, referenceCounter);
+            }
+
+            // 2. 处理自身的属性
+            SensitiveInfo annotation = field.getAnnotation(SensitiveInfo.class);
+            if (null == annotation || !field.getType().equals(String.class)) {
+                return;
+            }
+
+            String valueStr = (String) value;
+            switch (annotation.type()) {
+                case CHINESE_NAME: {
+                    field.set(javaBean, SensitiveInfoUtil.chineseName(valueStr));
+                    break;
+                }
+                case ID_CARD: {
+                    field.set(javaBean, SensitiveInfoUtil.idCardNum(valueStr));
+                    break;
+                }
+                case FIXED_PHONE: {
+                    field.set(javaBean, SensitiveInfoUtil.fixedPhone(valueStr));
+                    break;
+                }
+                case MOBILE_PHONE: {
+                    field.set(javaBean, SensitiveInfoUtil.mobilePhone(valueStr));
+                    break;
+                }
+                case ADDRESS: {
+                    field.set(javaBean, SensitiveInfoUtil.address(valueStr, 4));
+                    break;
+                }
+                case EMAIL: {
+                    field.set(javaBean, SensitiveInfoUtil.email(valueStr));
+                    break;
+                }
+                case BANK_CARD: {
+                    field.set(javaBean, SensitiveInfoUtil.bankCard(valueStr));
+                    break;
+                }
+                case CNAPS_CODE: {
+                    field.set(javaBean, SensitiveInfoUtil.cnapsCode(valueStr));
+                    break;
                 }
             }
         }
