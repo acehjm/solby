@@ -26,6 +26,7 @@ allprojects {
     repositories {
         mavenCentral()
         maven { url = uri("https://repo.spring.io/milestone") }
+        maven { url 'https://projectlombok.org/edge-releases' }
     }
 }
 
@@ -54,8 +55,8 @@ subprojects {
         implementation('org.springframework.boot:spring-boot-starter-aop')
         implementation('org.springframework.boot:spring-boot-starter-web')
 
-        annotationProcessor('org.projectlombok:lombok:1.18.10')
-        compileOnly('org.projectlombok:lombok:1.18.10')
+        annotationProcessor('org.projectlombok:lombok:edge-SNAPSHOT')
+        compileOnly('org.projectlombok:lombok:edge-SNAPSHOT')
     }
 
 //    dependencyManagement {
