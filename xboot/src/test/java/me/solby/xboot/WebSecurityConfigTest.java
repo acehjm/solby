@@ -34,10 +34,14 @@ public class WebSecurityConfigTest {
     private URL base;
 
     @Before
-    public void setUp() throws MalformedURLException {
+    public void setUp() {
         restTemplate = new TestRestTemplate("user001", "001");
 
-        base = new URL("http://localhost:" + port);
+        try {
+            base = new URL("http://localhost:" + port);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -57,7 +61,7 @@ public class WebSecurityConfigTest {
     }
 
     @Test
-    public void whenUserNoAuth_ThenFailure() throws IllegalStateException {
+    public void whenUserNoAuth_ThenFailure() {
         ResponseEntity<String> response = restTemplate.getForEntity(base.toString() + "/test/failure", String.class);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());

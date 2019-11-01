@@ -1,7 +1,5 @@
 package me.solby.xtool.base;
 
-import javax.annotation.Nullable;
-import javax.validation.constraints.NotNull;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -28,7 +26,7 @@ public class ZIPCompress {
      * @param level 压缩级别({"1", "2", "3", "4", "5", "6", "7", "8", "9"})
      * @return
      */
-    public static String compress(@NotNull String str, @Nullable Integer level) {
+    public static String compress(String str, Integer level) {
         level = null == level || 1 > level ? 6 : level;
 
         try (ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -53,7 +51,7 @@ public class ZIPCompress {
      * @param compressed 压缩字符串
      * @return
      */
-    public static String deCompress(@NotNull String compressed) {
+    public static String deCompress(String compressed) {
         try (ByteArrayOutputStream out = new ByteArrayOutputStream()) {
             // 压缩后写到out流中
             Inflater inf = new Inflater(true);

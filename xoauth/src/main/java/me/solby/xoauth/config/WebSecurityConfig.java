@@ -70,10 +70,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      * 配置Spring Security的Filter链
      *
      * @param web
-     * @throws Exception
      */
     @Override
-    public void configure(WebSecurity web) throws Exception {
+    public void configure(WebSecurity web) {
         //解决静态资源被拦截的问题
         web.ignoring().antMatchers("/exception", "/favicon.ico", "/webjars/**");
         super.configure(web);

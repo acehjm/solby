@@ -1,13 +1,10 @@
-repositories {
-    mavenCentral()
-}
 
+apply plugin: 'java'
 
 dependencies {
-    implementation project(':xcommon:xtool')
+    implementation project(':xtool')
 
     implementation('com.opencsv:opencsv:4.4')
     implementation('commons-io:commons-io:2.6')
     implementation('org.apache.poi:poi-ooxml:4.1.0')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
 }

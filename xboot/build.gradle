@@ -6,10 +6,10 @@ repositories {
 }
 
 dependencies {
-    implementation(project(':xcommon:xtool'))
-    implementation(project(':xconfig'))
-    implementation(project(':xquartz'))
-    implementation(project(':xoauth'))
+    implementation project(':xtool')
+    implementation project(':xconfig')
+    implementation project(':xquartz')
+    implementation project(':xoauth')
 
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
     implementation('org.springframework.boot:spring-boot-starter-security')

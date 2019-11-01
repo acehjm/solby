@@ -1,32 +1,28 @@
-/**
- * 全局配置
- */
+
 buildscript {
     ext {
-        springBootVersion = '2.2.0.M5'
-    }
-
-    repositories {
-        mavenCentral()
-        maven { url = uri("https://repo.spring.io/milestone") }
-    }
-
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        springBootVersion = '2.2.0.RELEASE'
     }
 }
 
 /**
- * 所有项目生效
+ * 插件（自动启用）
  */
+plugins {
+    // 该插件会导致非springboot项目编译失败，使用dependencyManagement方式替代
+    // id 'org.springframework.boot' version '2.2.0.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
 allprojects {
     group = 'me.solby'
     version = '0.0.2-SNAPSHOT'
 
+    sourceCompatibility = 11
+
     repositories {
         mavenCentral()
-        maven { url = uri("https://repo.spring.io/milestone") }
-        maven { url 'https://projectlombok.org/edge-releases' }
     }
 }
 
@@ -35,38 +31,49 @@ allprojects {
  */
 subprojects {
     // 子项目排除工具模块
-    if (project.name == 'xcommon:xtool' || project.name == 'xcommon:xfile') {
+    if (project.name == 'xtool') {
         return
     }
 
-    apply plugin: 'java'
-    apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'java'
 
-    sourceCompatibility = 11
+    configurations {
+        developmentOnly
+        runtimeClasspath {
+            extendsFrom developmentOnly
+        }
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
 
     // java编译的时候缺省状态下会因为中文字符而失败
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
+        }
+    }
 
     /**
      * 子项目通用依赖
      */
     dependencies {
-        implementation('org.springframework.boot:spring-boot-starter-aop')
-        implementation('org.springframework.boot:spring-boot-starter-web')
+        implementation 'org.springframework.boot:spring-boot-starter-aop'
+        implementation 'org.springframework.boot:spring-boot-starter-web'
+        testImplementation('org.springframework.boot:spring-boot-starter-test')
 
-        annotationProcessor('org.projectlombok:lombok:edge-SNAPSHOT')
-        compileOnly('org.projectlombok:lombok:edge-SNAPSHOT')
+        developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
     }
 
-//    dependencyManagement {
-//        imports {
-//            mavenBom 'org.springframework.boot:spring-boot-starter-parent:${springBootVersion}'
-//        }
-//    }
-
     test {
-        enabled = false
+        useJUnitPlatform()
+        enabled(false)
     }
 
 }

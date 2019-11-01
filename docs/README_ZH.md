@@ -48,7 +48,3 @@
 *Gradle方式:* 在Gradle中，执行 `gradle bootRun` 来启动应用。
 
 *Script方式:*  在 `/bin`目录下找到启动脚本, 使用以下命令启动： `./xxx.sh [APP_NAME] [start|stop|restart|status]`.
-
-### 已知缺陷
-
-- Gradle5和OpenJDK11下，lombok各种配置使用都会出现注解不支持情况，如`@Data`。

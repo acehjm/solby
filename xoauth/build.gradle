@@ -1,12 +1,10 @@
 /**
  * 依赖父项目
  */
-repositories {
-    mavenCentral()
-}
+
 
 dependencies {
-    implementation project(':xcommon:xtool')
+    implementation project(':xtool')
 
     implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.security:spring-security-jwt:1.+')

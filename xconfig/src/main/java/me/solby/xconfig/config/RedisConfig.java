@@ -32,7 +32,7 @@ import static org.springframework.data.redis.cache.RedisCacheConfiguration.defau
 @Configuration
 public class RedisConfig extends CachingConfigurerSupport {
 
-    @Value("${spring.application.name}")
+    @Value("${spring.application.name:solby}")
     private String applicationName;
 
     @Bean

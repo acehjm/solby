@@ -3,6 +3,5 @@ include 'xboot'
 include 'xoauth'
 include 'xconfig'
 include 'xquartz'
-include 'xcommon:xfile'
-include 'xcommon:xtool'
-
+include 'xfile'
+include 'xtool'
