@@ -13,11 +13,12 @@ plugins {
     // id 'org.springframework.boot' version '2.2.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
+    id 'maven-publish'
 }
 
 allprojects {
     group = 'me.solby'
-    version = '0.0.2-SNAPSHOT'
+    version = '0.0.8-SNAPSHOT'
 
     sourceCompatibility = 11
 
@@ -30,6 +31,27 @@ allprojects {
  * 所有子项目生效
  */
 subprojects {
+    publishing {
+        repositories {
+            maven {
+                name = "GitHubPackages"
+                url = uri("https://maven.pkg.github.com/acehjm/solby")
+                credentials {
+                    username = project.findProperty("gpr.user") ?: System.getenv("GPR_USER")
+                    password = project.findProperty("gpr.key") ?: System.getenv("GPR_API_KEY")
+                }
+            }
+        }
+        publishing {
+            publications {
+                gpr(MavenPublication) {
+                    // 子项目中配置发布jar包
+                    // from(components.java)
+                }
+            }
+        }
+    }
+
     // 子项目排除工具模块
     if (project.name == 'xtool') {
         return
@@ -37,6 +59,7 @@ subprojects {
 
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'java'
+    apply plugin: 'maven-publish'
 
     configurations {
         developmentOnly

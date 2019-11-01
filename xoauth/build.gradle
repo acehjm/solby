@@ -1,7 +1,16 @@
-/**
- * 依赖父项目
- */
 
+publishing {
+    publications {
+        gpr(MavenPublication) {
+            groupId project.group
+            artifactId project.name
+            version project.version
+
+            // 子项目中配置发布jar包
+            // from(components.java)
+        }
+    }
+}
 
 dependencies {
     implementation project(':xtool')
