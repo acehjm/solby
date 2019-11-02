@@ -8,7 +8,7 @@ publishing {
             version project.version
 
             // 子项目中配置发布jar包
-            // from(components.java)
+             from(components.java)
         }
     }
 }
