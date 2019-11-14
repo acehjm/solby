@@ -12,13 +12,17 @@ class SHAUtilTest {
 
     @Test
     void sha256HexWithString() {
-        String data = "SHA-256";
-        System.out.println(SHAUtil.sha256Hex(data));
-        System.out.println(SHAUtil.sha256HexBase64(data));
-    }
+        String data = "SHA-algorithm";
 
-    @Test
-    void sha256HexWithBytes() {
+        System.out.println("Hex=====================================");
+        System.out.println(SHAUtil.Digest.MD5.digest(data));
+        System.out.println(SHAUtil.Digest.SHA1.digest(data));
+        System.out.println(SHAUtil.Digest.SHA256.digest(data));
+
+        System.out.println("Base64=====================================");
+        System.out.println(SHAUtil.Digest.MD5.digestBase64(data));
+        System.out.println(SHAUtil.Digest.SHA1.digestBase64(data));
+        System.out.println(SHAUtil.Digest.SHA256.digestBase64(data));
     }
 
     @Test

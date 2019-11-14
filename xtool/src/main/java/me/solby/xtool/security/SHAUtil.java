@@ -13,6 +13,10 @@ import java.util.Base64;
  */
 public class SHAUtil {
 
+    public static final String DIGEST_MD5 = "MD5";
+    public static final String DIGEST_SHA1 = "SHA-1";
+    public static final String DIGEST_SHA256 = "SHA-256";
+
     private SHAUtil() {
     }
 
@@ -22,7 +26,7 @@ public class SHAUtil {
      * @param data
      * @return
      */
-    public static String sha256HexBase64(final String data) {
+    public static String sha256Base64(final String data) {
         byte[] bytes = sha256Hex(data.getBytes(StandardCharsets.UTF_8));
         return new String(Base64.getEncoder().encode(bytes), StandardCharsets.UTF_8);
     }
@@ -45,7 +49,7 @@ public class SHAUtil {
      * @return
      */
     public static byte[] sha256Hex(final byte[] bytes) {
-        return shaAlgorithmHex(bytes, "SHA-256");
+        return shaAlgorithmHex(bytes, DIGEST_SHA256);
     }
 
     /**
@@ -88,4 +92,63 @@ public class SHAUtil {
         }
     }
 
+    /**
+     * 签名
+     */
+    public enum Digest {
+
+        /**
+         * MD5 摘要
+         */
+        MD5() {
+            @Override
+            public String digestBase64(String plain) {
+                return SHAUtil.shaAlgorithmHexBase64(plain, DIGEST_MD5);
+            }
+
+            @Override
+            public String digest(String plain) {
+                return SHAUtil.shaAlgorithmHex(plain, DIGEST_MD5);
+            }
+        },
+
+        /**
+         * SHA1 摘要
+         */
+        SHA1() {
+            @Override
+            public String digestBase64(String plain) {
+                return SHAUtil.shaAlgorithmHexBase64(plain, DIGEST_SHA1);
+            }
+
+            @Override
+            public String digest(String plain) {
+                return SHAUtil.shaAlgorithmHex(plain, DIGEST_SHA1);
+            }
+        },
+
+        /**
+         * SHA256 摘要
+         */
+        SHA256() {
+            @Override
+            public String digestBase64(String plain) {
+                return SHAUtil.shaAlgorithmHexBase64(plain, DIGEST_SHA256);
+            }
+
+            @Override
+            public String digest(String plain) {
+                return SHAUtil.shaAlgorithmHex(plain, DIGEST_SHA256);
+            }
+        },
+
+        ;
+
+        Digest() {
+        }
+
+        public abstract String digestBase64(String plain);
+
+        public abstract String digest(String plain);
+    }
 }
