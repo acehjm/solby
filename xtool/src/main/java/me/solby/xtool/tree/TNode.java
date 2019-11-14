@@ -5,8 +5,9 @@ import lombok.Data;
 import java.util.List;
 
 /**
+ * Tree节点信息
+ *
  * @author majhdk
- * @DESCRIPTION Tree节点信息
  * @date 2018-12-22
  */
 @Data
