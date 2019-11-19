@@ -6,6 +6,8 @@ import me.solby.xoauth.jwt.JwtUser;
 import me.solby.xtool.constant.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.NonNullApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,7 +38,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private static final String AUTHORIZATION_TOKEN = "access_token";
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
         String token = this.getRequestToken(request);
         //验证JWT是否正确
         if (StringUtils.hasText(token) && JwtTokenHelper.validateToken(token)) {
