@@ -1,13 +1,12 @@
 package me.solby.xoauth.filter;
 
 import me.solby.xoauth.common.UserSessionHolder;
-import me.solby.xoauth.jwt.JwtTokenHelper;
+import me.solby.xoauth.jwt.JwtTokenUtil;
 import me.solby.xoauth.jwt.JwtUser;
 import me.solby.xtool.constant.UserSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.lang.NonNull;
-import org.springframework.lang.NonNullApi;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,8 +41,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     @NonNull FilterChain filterChain) throws ServletException, IOException {
         String token = this.getRequestToken(request);
         //验证JWT是否正确
-        if (StringUtils.hasText(token) && JwtTokenHelper.validateToken(token)) {
-            JwtUser user = JwtTokenHelper.getUserInfo(token, JwtUser.class);
+        if (StringUtils.hasText(token) && JwtTokenUtil.validateToken(token)) {
+            JwtUser user = JwtTokenUtil.parseToken(token, JwtUser.class);
 
             //获取用户认证信息
             List<SimpleGrantedAuthority> authorities = user.getAuthorities().stream()

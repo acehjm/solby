@@ -14,6 +14,9 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
     implementation('org.springframework.boot:spring-boot-starter-security')
     implementation('org.springframework.boot:spring-boot-starter-actuator')
+//    implementation('de.codecentric:spring-boot-admin-starter-server:2.+')
+//    implementation('de.codecentric:spring-boot-admin-server-ui:2.+')
+
 
     implementation('com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.9')
     implementation('com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.9.9')
@@ -22,7 +25,7 @@ dependencies {
     implementation('com.google.code.gson:gson:2.8.5')
     implementation('com.baomidou:mybatis-plus-boot-starter:3.0.6')
     implementation('org.flywaydb:flyway-core')
-    runtimeOnly('org.postgresql:postgresql')
+    runtimeOnly('mysql:mysql-connector-java')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 

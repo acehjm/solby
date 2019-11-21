@@ -14,9 +14,9 @@ spring:
     add-mappings: false
   # datasource
   datasource:
-    platform: postgres
-    url: jdbc:postgresql://127.0.0.1:5432/postgres?useSSL=false
-    username: postgres
+    platform: mysql
+    url: jdbc:mysql://127.0.0.1:3306/solby?useSSL=false
+    username: root
     password: root
   # flyway
   flyway:

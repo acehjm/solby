@@ -1,10 +1,10 @@
 package me.solby.xboot.controller;
 
-import me.solby.xboot.domain.repository.UserRepository;
-import me.solby.xtool.json.JsonUtil;
 import me.solby.xboot.domain.entity.UserDO;
-import me.solby.xoauth.jwt.JwtTokenHelper;
+import me.solby.xboot.domain.repository.UserRepository;
+import me.solby.xoauth.jwt.JwtTokenUtil;
 import me.solby.xoauth.jwt.JwtUser;
+import me.solby.xtool.json.JsonUtil;
 import me.solby.xtool.response.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,9 +41,9 @@ public class AuthController {
         UserDO userDO = userRepository.findByUserName(username);
 
         JwtUser jwtUser = new JwtUser(userDO.getUserName(), userDO.getUserId(), List.of("ADMIN", "USER", "GUEST"));
-        String token = JwtTokenHelper.token(JsonUtil.toJson(jwtUser));
+        String token = JwtTokenUtil.token(JsonUtil.toJson(jwtUser));
 
-        JwtUser info = JwtTokenHelper.getUserInfo(token, JwtUser.class);
+        JwtUser info = JwtTokenUtil.parseToken(token, JwtUser.class);
         System.out.println("Parse token info: " + JsonUtil.toJson(info));
         return new Result<>(token);
     }
